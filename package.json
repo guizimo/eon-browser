@@ -11,7 +11,8 @@
     "electron:build": "rimraf dist && vite build && electron-builder"
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",
