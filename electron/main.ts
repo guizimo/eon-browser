@@ -13,6 +13,9 @@ const createWindow = () => {
     // load your file
     mainWindow.loadFile('index.html')
   }
+
+  // 开发者工具
+  mainWindow.webContents.openDevTools()
 }
 
 // Electron结束初始化和创建浏览器窗口时调用
