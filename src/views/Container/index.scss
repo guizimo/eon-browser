@@ -14,10 +14,13 @@
     .tag-list {
       height: 30px;
       display: flex;
+
       .tag-item {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 0 10px;
+        margin-right: 10px;
 
         .tag-item-icon {
           width: 20px;

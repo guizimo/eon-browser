@@ -5,7 +5,7 @@ export const useTagStore = defineStore('tag', {
   state: () => {
     return {
       tagList: [] as TagItem[],
-      curTag: ''
+      curTag: {}
     }
   },
   actions: {
@@ -16,6 +16,9 @@ export const useTagStore = defineStore('tag', {
       for (let i = 0; i < this.tagList.length; i++) {
         if (this.tagList[i].id === id) this.tagList.splice(i, 1)
       }
+    },
+    selectTagItem(id: number) {
+      this.curTag = this.tagList.find(item => item.id === id) || {}
     }
   }
 })

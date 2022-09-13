@@ -11,6 +11,8 @@ protocol.registerSchemesAsPrivileged([
   }
 ])
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+
 // 取消菜单栏
 // Menu.setApplicationMenu(null)
 
