@@ -11,6 +11,9 @@
     "electron:build": "rimraf dist && vite build && electron-builder"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.9",
+    "element-plus": "^2.2.16",
+    "pinia": "^2.0.22",
     "vue": "^3.2.37",
     "vue-router": "^4.0.13"
   },

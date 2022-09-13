@@ -1,10 +1,28 @@
 // electron/main.ts
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu, protocol, globalShortcut } from 'electron'
+
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: 'app',
+    privileges: {
+      secure: true,
+      standard: true
+    }
+  }
+])
+
+// 取消菜单栏
+// Menu.setApplicationMenu(null)
 
 // 创建浏览器窗口
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    title: 'Main window'
+    title: 'Main window',
+    webPreferences: {
+      webviewTag: true,
+      nodeIntegration: true,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+    }
   })
 
   if (process.env.VITE_DEV_SERVER_URL) {
@@ -13,6 +31,16 @@ const createWindow = () => {
     // load your file
     mainWindow.loadFile('index.html')
   }
+
+  // if (process.platform === 'darwin') {
+  //   let contents = mainWindow.webContents
+  //   globalShortcut.register('CommandOrControl+C', () => {
+  //     contents.copy()
+  //   })
+  //   globalShortcut.register('CommandOrControl+V', () => {
+  //     contents.paste()
+  //   })
+  // }
 
   // 开发者工具
   mainWindow.webContents.openDevTools()
