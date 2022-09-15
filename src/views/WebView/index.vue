@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="view-container">
     <div class="tool-bar-container">
       <ToolBar :link="link" @change="handleChangeUrl"></ToolBar>
     </div>

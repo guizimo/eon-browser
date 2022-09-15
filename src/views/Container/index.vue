@@ -56,6 +56,9 @@ const selectTag = (id: string) => {
   tag.selectTagItem(id)
 }
 
+if(tagList.value.length === 0) {
+  openNewTag()
+}
 
 </script>
 
