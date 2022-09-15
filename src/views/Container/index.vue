@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tag-container">
       <div class="tag-list">
-        <div class="tag-item" v-for="item of tagList" :key="`title-${item.id}`" :class="curTag.id === item.id ? 'select-item' : ''">
+        <div class="tag-item" v-for="item of tagList" :key="`title-${item.id}`" :class="curTagId === item.id ? 'select-item' : ''">
           <img class="tag-item-icon" @click="selectTag(item.id)" :src="item.icon" alt="">
           <div class="tag-item-title" @click="selectTag(item.id)">{{item.id}}</div>
           <div class="tag-item-close">
@@ -20,7 +20,7 @@
           :key="`view-${item.id}`"
           :link="item.link"
           :linkMessage="item"
-          v-show="curTag.id = item.id"
+          :show="curTagId === item.id"
       >
       </WebViewHtml>
     </div>
@@ -37,11 +37,10 @@ import {storeToRefs} from "pinia";
 
 const tag = useTagStore()
 // 响应式
-const {tagList, curTag} = storeToRefs(tag)
+const {tagList, curTagId} = storeToRefs(tag)
 
 // 关闭tag
 const closeTag = (id: string) => {
-  console.log(id)
   tag.delTagItem(id)
 }
 

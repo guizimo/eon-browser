@@ -1,5 +1,5 @@
 <template>
-  <div class="view-container">
+  <div class="view-container" v-show="show">
     <div class="tool-bar-container">
       <ToolBar :link="link" @change="handleChangeUrl"></ToolBar>
     </div>
@@ -27,7 +27,8 @@ import ToolBar from '../../components/ToolBar/index.vue'
 
 const props = defineProps({
   link: String,
-  linkMessage: Object
+  linkMessage: Object,
+  show: Boolean
 })
 
 const httpreferrer = ref('https://www.baidu.com')
