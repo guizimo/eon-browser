@@ -16,6 +16,8 @@ const bootstrap = () => {
   for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
   }
+  // 屏蔽警告信息
+  app.config.warnHandler = () => null
   app.use(ElementPlus).use(router).mount('#app')
 }
 

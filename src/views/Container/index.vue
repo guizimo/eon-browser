@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 // 组合式
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import {useTagStore} from "../../store/modules/tager";
 import WebViewHtml from '../WebView/index.vue'
 import {tempTagItem} from "./models";
@@ -38,6 +38,7 @@ import {storeToRefs} from "pinia";
 const tag = useTagStore()
 // 响应式
 const {tagList, curTagId} = storeToRefs(tag)
+
 
 // 关闭tag
 const closeTag = (id: string) => {
@@ -58,6 +59,10 @@ const selectTag = (id: string) => {
 if(tagList.value.length === 0) {
   openNewTag()
 }
+
+onMounted(() => {
+
+})
 
 </script>
 
