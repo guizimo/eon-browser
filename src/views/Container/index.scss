@@ -12,15 +12,25 @@
     align-items: center;
 
     .tag-list {
-      height: 30px;
+      height: 40px;
       display: flex;
+      align-items: center;
 
       .tag-item {
+        height: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0 10px;
-        margin-right: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+        background: #fdfcfc;
+        border-radius: 8px;
+        opacity: 0.7;
+
+        &:hover{
+          opacity: 1;
+        }
 
         .tag-item-icon {
           width: 20px;
@@ -31,6 +41,10 @@
           font-size: 14px;
           font-weight: 500;
           margin: 0 5px;
+          max-width: 100px;
+          min-width: 20px;
+          overflow: hidden;
+          white-space: nowrap;
         }
         .tag-item-close {
           width: 20px;
@@ -50,6 +64,12 @@
           }
         }
       }
+
+      .select-item {
+        height: 40px;
+        opacity: 1;
+        border-radius: unset;
+      }
     }
 
     .add-tag {
@@ -59,6 +79,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 100%;
+      margin-left: 10px;
 
       &:hover{
         background: #ced3d7;

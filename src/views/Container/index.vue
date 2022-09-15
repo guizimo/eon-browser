@@ -2,9 +2,9 @@
   <div class="container">
     <div class="tag-container">
       <div class="tag-list">
-        <div class="tag-item" v-for="item of tag.tagList">
+        <div class="tag-item" v-for="item of tagList" :key="`title-${item.id}`" :class="curTag.id === item.id ? 'select-item' : ''">
           <img class="tag-item-icon" @click="selectTag(item.id)" :src="item.icon" alt="">
-          <div class="tag-item-title" @click="selectTag(item.id)">{{item.name}}</div>
+          <div class="tag-item-title" @click="selectTag(item.id)">{{item.id}}</div>
           <div class="tag-item-close">
             <el-icon class="tag-item-close-icon" @click="closeTag(item.id)"><Close /></el-icon>
           </div>
@@ -15,7 +15,14 @@
       </div>
     </div>
     <div class="view-container">
-      <WebView></WebView>
+      <WebViewHtml
+          v-for="item of tagList"
+          :key="`view-${item.id}`"
+          :link="item.link"
+          :linkMessage="item"
+          v-show="curTag.id = item.id"
+      >
+      </WebViewHtml>
     </div>
   </div>
 </template>
@@ -24,24 +31,28 @@
 // 组合式
 import { ref } from 'vue'
 import {useTagStore} from "../../store/modules/tager";
-import WebView from '../WebView/index.vue'
+import WebViewHtml from '../WebView/index.vue'
 import {tempTagItem} from "./models";
+import {storeToRefs} from "pinia";
 
 const tag = useTagStore()
+// 响应式
+const {tagList, curTag} = storeToRefs(tag)
 
 // 关闭tag
-const closeTag = (id: number) => {
+const closeTag = (id: string) => {
   console.log(id)
   tag.delTagItem(id)
 }
 
 // 打开新tag
 const openNewTag = () => {
-  tag.pushTagItem(tempTagItem)
-  tag.selectTagItem(tempTagItem.id)
+  const temp = tempTagItem()
+  tag.pushTagItem(temp)
 }
 
-const selectTag = (id: number) => {
+// 选中Tag
+const selectTag = (id: string) => {
   tag.selectTagItem(id)
 }
 

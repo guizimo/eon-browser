@@ -1,16 +1,18 @@
 <template>
   <div class="container">
-    <div class="tool"></div>
+    <div class="tool-bar-container">
+      <ToolBar :link="link" @change="handleChangeUrl"></ToolBar>
+    </div>
     <div class="view">
       <webview
           nodeintegration
           plugins
-          class="WebWebviewWeb"
+          class="view-container"
           disablewebsecurity
           :httpreferrer='httpreferrer'
           ref="webViews"
           style="display: inline-flex;"
-          :src='webViewLink'
+          :src='link'
       >
       </webview>
     </div>
@@ -20,12 +22,21 @@
 <script lang="ts" setup>
 
 import {ref} from "vue";
+import ToolBar from '../../components/ToolBar/index.vue'
+
+
+const props = defineProps({
+  link: String,
+  linkMessage: Object
+})
 
 const httpreferrer = ref('https://www.baidu.com')
-const webViewLink = ref('https://www.baidu.com')
+
+
+const handleChangeUrl = (ev: { key: string; }) => {
+
+}
 
 </script>
 
-<style scoped>
-
-</style>
+<style src="./index.scss" lang="scss" scoped></style>
