@@ -1,7 +1,7 @@
 <template>
   <div class="view-container" v-show="show">
     <div class="tool-bar-container">
-      <ToolBar :link="link" @reload="reloadHandler" @change="handleChangeUrl"></ToolBar>
+      <ToolBar :link="link" @reload="reloadHandler" @goBack="goBackHandler" @forward="forwardHandler" @change="handleChangeUrl"></ToolBar>
     </div>
     <div class="view">
       <webview
@@ -40,12 +40,38 @@ const props = defineProps({
 const httpreferrer = ref('https://www.baidu.com')
 // 是否展示菜单内容
 const isContextShow = ref(false)
+// 是否可以后退
+const isGoBack = ref(false)
+// 是否可以前进
+const isForward = ref(false)
+// 是否停止
+const isStop = ref(false)
+// 是否页面正常加载
+const isPageNormal = ref(false)
 
 const reloadHandler = () => {
-  console.log('点击刷新页面')
+  console.log('点击刷新按钮')
   if (!webViewRef.value) return
   isContextShow.value = false
   webViewRef.value.reload()
+}
+
+// 后退
+const goBackHandler = () => {
+  console.log('点击后退按钮')
+  if (!webViewRef.value) return
+  isContextShow.value = false
+  if (!isGoBack.value) return
+  webViewRef.value.goBack()
+}
+
+// 前进
+const forwardHandler = () => {
+  console.log('点击前进按钮')
+  if (!webViewRef.value) return
+  isContextShow.value = false
+  if (!isForward.value) return
+  webViewRef.value.goForward()
 }
 
 // 初始化Hook

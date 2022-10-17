@@ -1,10 +1,10 @@
 <template>
   <div class="tool-container">
     <span class="tool-icon-content">
-       <el-icon class="tool-icon"><Back/></el-icon>
+       <el-icon class="tool-icon" @click="goBack"><Back/></el-icon>
     </span>
     <span class="tool-icon-content">
-       <el-icon class="tool-icon"><Right/></el-icon>
+       <el-icon class="tool-icon" @click="forward"><Right/></el-icon>
     </span>
     <span class="tool-icon-content">
        <el-icon class="tool-icon" @click="reload"><RefreshRight/></el-icon>
@@ -24,7 +24,7 @@ const props = defineProps({
   link: String
 })
 
-const emit = defineEmits(['change', 'reload'])
+const emit = defineEmits(['change', 'reload', 'goBack', 'forward'])
 
 const webUrl = ref(props.link)
 
@@ -47,6 +47,15 @@ const reload = () => {
   emit('reload')
 }
 
+// 后退按钮
+const goBack = () => {
+  emit('reload')
+}
+
+// 前进按钮
+const forward = () => {
+  emit('reload')
+}
 </script>
 
 <style src="./index.scss" lang="scss" scoped></style>
