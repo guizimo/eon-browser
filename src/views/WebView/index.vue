@@ -1,7 +1,7 @@
 <template>
   <div class="view-container" v-show="show">
     <div class="tool-bar-container">
-      <ToolBar :link="link" @change="handleChangeUrl"></ToolBar>
+      <ToolBar :link="link" @reload="reloadHandler" @change="handleChangeUrl"></ToolBar>
     </div>
     <div class="view">
       <webview
@@ -25,7 +25,6 @@
  * 官方文档
  * https://www.electronjs.org/zh/docs/latest/api/webview-tag
  */
-
 import {onMounted, ref} from "vue";
 import ToolBar from '../../components/ToolBar/index.vue'
 
@@ -37,8 +36,19 @@ const props = defineProps({
   show: Boolean
 })
 
+// httpreferrer
 const httpreferrer = ref('https://www.baidu.com')
+// 是否展示菜单内容
+const isContextShow = ref(false)
 
+const reloadHandler = () => {
+  console.log('点击刷新页面')
+  if (!webViewRef.value) return
+  isContextShow.value = false
+  webViewRef.value.reload()
+}
+
+// 初始化Hook
 const initWebViewHook = () => {
   if (!webViewRef.value) return
   webViewRef.value.addEventListener('new-window', () => {

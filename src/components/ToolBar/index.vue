@@ -7,7 +7,7 @@
        <el-icon class="tool-icon"><Right/></el-icon>
     </span>
     <span class="tool-icon-content">
-       <el-icon class="tool-icon"><RefreshRight/></el-icon>
+       <el-icon class="tool-icon" @click="reload"><RefreshRight/></el-icon>
     </span>
     <div class="tool-search">
       <input class="tool-search-input" v-model="webUrl" spellcheck="false" autofocus
@@ -24,7 +24,7 @@ const props = defineProps({
   link: String
 })
 
-const emit = defineEmits(['change'])
+const emit = defineEmits(['change', 'reload'])
 
 const webUrl = ref(props.link)
 
@@ -40,6 +40,11 @@ const handleChangeUrl = (ev: { key: string; }) => {
 
     }
   }
+}
+
+// 刷新按钮
+const reload = () => {
+  emit('reload')
 }
 
 </script>
