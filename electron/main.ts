@@ -62,3 +62,15 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
+
+// 阻止新开窗口
+let contentTemp: any = null
+
+const newWindowListener = (event: Event) => {
+  event.preventDefault()
+  contentTemp?.removeListener('new-window', newWindowListener)
+}
+app.on('web-contents-created', (event, webContents) => {
+  webContents.addListener('new-window', newWindowListener)
+  contentTemp = webContents
+})
