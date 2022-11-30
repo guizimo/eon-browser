@@ -49,12 +49,12 @@ const reload = () => {
 
 // 后退按钮
 const goBack = () => {
-  emit('reload')
+  emit('goBack')
 }
 
 // 前进按钮
 const forward = () => {
-  emit('reload')
+  emit('forward')
 }
 </script>
 

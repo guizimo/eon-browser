@@ -56,6 +56,7 @@ const selectTag = (id: string) => {
   tag.selectTagItem(id)
 }
 
+// 当标签列表为空时，新打开一个默认窗口
 if(tagList.value.length === 0) {
   openNewTag()
 }

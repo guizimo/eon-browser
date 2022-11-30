@@ -50,6 +50,7 @@ const isStop = ref(false)
 // 是否页面正常加载
 const isPageNormal = ref(false)
 
+// 刷新页面
 const reloadHandler = () => {
   console.log('点击刷新按钮')
   if (!webViewRef.value) return
@@ -59,7 +60,7 @@ const reloadHandler = () => {
 
 // 后退
 const goBackHandler = () => {
-  console.log('点击后退按钮')
+  console.log('点击后退按钮',webViewRef.value, isGoBack.value)
   if (!webViewRef.value) return
   isContextShow.value = false
   if (!isGoBack.value) return
@@ -68,7 +69,7 @@ const goBackHandler = () => {
 
 // 前进
 const forwardHandler = () => {
-  console.log('点击前进按钮')
+  console.log('点击前进按钮', webViewRef.value, isForward.value)
   if (!webViewRef.value) return
   isContextShow.value = false
   if (!isForward.value) return
@@ -97,6 +98,8 @@ const initWebViewHook = (showConsoleLog = false) => {
 
   webViewRef.value.addEventListener('dom-ready', () => {
     showConsoleLog && console.log('4.主页面文档加载')
+    isGoBack.value = webViewRef.value.canGoBack()
+    isForward.value = webViewRef.value.canGoForward()
   })
 
   webViewRef.value.addEventListener('did-frame-finish-load',() => {
