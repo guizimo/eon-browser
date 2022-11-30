@@ -29,17 +29,7 @@ const emit = defineEmits(['change', 'reload', 'goBack', 'forward'])
 const webUrl = ref(props.link)
 
 const handleChangeUrl = (ev: { key: string; }) => {
-  emit('change', ev)
-  if (ev.key == 'Enter') {
-    let urlRG = /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
-    if (webUrl.value && urlRG.test(webUrl.value)) {
-      // 这是一个网址
-      console.log(webUrl.value)
-    } else {
-      console.log('11111111')
-
-    }
-  }
+  emit('change', {ev, webUrl: webUrl.value})
 }
 
 // 刷新按钮

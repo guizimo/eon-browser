@@ -10,6 +10,10 @@ export const useTagStore = defineStore('tag', {
     }
   },
   actions: {
+    /**
+     * 打开新的窗口
+     * @param curItem
+     */
     pushTagItem(curItem: TagItem) {
       const temp = {
         ...curItem,
@@ -18,6 +22,10 @@ export const useTagStore = defineStore('tag', {
       this.curTagId = temp.id
       this.tagList.push(temp)
     },
+    /**
+     * 根据ID删除指定的窗口
+     * @param id
+     */
     delTagItem(id: string) {
       if (this.tagList.length === 1) {
         // 删除只有一个tab时，不允许删除
@@ -32,6 +40,23 @@ export const useTagStore = defineStore('tag', {
         this.curTagId = curItem ? curItem.id : ''
       }
     },
+    /**
+     * 编辑窗口信息
+     */
+    editCurTagItem(params: any) {
+      for (let i = 0; i < this.tagList.length; i++) {
+        if (this.tagList[i].id === this.curTagId) {
+          this.tagList[i] = {
+            ...this.tagList[i],
+            ...params
+          }
+        }
+      }
+    },
+    /**
+     * 选中窗口
+     * @param id
+     */
     selectTagItem(id: string) {
       const curItem = this.tagList.find(item => item.id === id)
       this.curTagId = curItem ? curItem.id : ''

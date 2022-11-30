@@ -28,6 +28,7 @@
  */
 import {onMounted, ref} from "vue";
 import ToolBar from '../../components/ToolBar/index.vue'
+import {useTagStore} from "../../store/modules/tager";
 
 const webViewRef = ref(null as any)
 
@@ -44,11 +45,13 @@ const isContextShow = ref(false)
 // 是否可以后退
 const isGoBack = ref(false)
 // 是否可以前进
-const isForward = ref(false)
+const isGoForward = ref(false)
 // 是否停止
 const isStop = ref(false)
 // 是否页面正常加载
 const isPageNormal = ref(false)
+
+const tag = useTagStore()
 
 // 刷新页面
 const reloadHandler = () => {
@@ -69,10 +72,10 @@ const goBackHandler = () => {
 
 // 前进
 const forwardHandler = () => {
-  console.log('点击前进按钮', webViewRef.value, isForward.value)
+  console.log('点击前进按钮', webViewRef.value, isGoForward.value)
   if (!webViewRef.value) return
   isContextShow.value = false
-  if (!isForward.value) return
+  if (!isGoForward.value) return
   webViewRef.value.goForward()
 }
 
@@ -99,7 +102,7 @@ const initWebViewHook = (showConsoleLog = false) => {
   webViewRef.value.addEventListener('dom-ready', () => {
     showConsoleLog && console.log('4.主页面文档加载')
     isGoBack.value = webViewRef.value.canGoBack()
-    isForward.value = webViewRef.value.canGoForward()
+    isGoForward.value = webViewRef.value.canGoForward()
   })
 
   webViewRef.value.addEventListener('did-frame-finish-load',() => {
@@ -132,9 +135,24 @@ onMounted(() => {
   initWebViewHook()
 })
 
-
-const handleChangeUrl = (ev: { key: string; }) => {
-
+// 更新URL
+const handleChangeUrl = (params: { ev: any; webUrl: any; }) => {
+  let {ev, webUrl} = params
+  if (ev.key == 'Enter') {
+    let urlRG = /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
+    if (webUrl && urlRG.test(webUrl)) {
+      // 这是一个网址
+      if (!webUrl.startsWith('http://') && !webUrl.startsWith('https://')) {
+        webUrl = 'https://' + webUrl
+      }
+    } else {
+      // 百度一下内容
+      webUrl = `https://www.baidu.com/s?ie=UTF-8&wd=${webUrl}`
+    }
+    tag.editCurTagItem({
+      link: webUrl
+    })
+  }
 }
 
 </script>
