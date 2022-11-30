@@ -1,7 +1,7 @@
 <template>
   <div class="view-container" v-show="show">
     <div class="tool-bar-container">
-      <ToolBar :link="link" @reload="reloadHandler" @goBack="goBackHandler" @forward="forwardHandler" @change="handleChangeUrl"></ToolBar>
+      <ToolBar :link="curLink" @reload="reloadHandler" @goBack="goBackHandler" @forward="forwardHandler" @change="handleChangeUrl"></ToolBar>
     </div>
     <div class="view">
       <WebView
@@ -34,6 +34,7 @@ const webViewRef = ref(null as any)
 
 const props = defineProps({
   link: String,
+  id: String,
   linkMessage: Object,
   show: Boolean
 })
@@ -50,6 +51,10 @@ const isGoForward = ref(false)
 const isStop = ref(false)
 // 是否页面正常加载
 const isPageNormal = ref(false)
+// 页面是否在加载中
+const isLoading = ref(false)
+// 当前curLink
+const curLink = ref(props.link)
 
 const tag = useTagStore()
 
@@ -63,7 +68,7 @@ const reloadHandler = () => {
 
 // 后退
 const goBackHandler = () => {
-  console.log('点击后退按钮',webViewRef.value, isGoBack.value)
+  console.log('点击后退按钮')
   if (!webViewRef.value) return
   isContextShow.value = false
   if (!isGoBack.value) return
@@ -72,7 +77,7 @@ const goBackHandler = () => {
 
 // 前进
 const forwardHandler = () => {
-  console.log('点击前进按钮', webViewRef.value, isGoForward.value)
+  console.log('点击前进按钮')
   if (!webViewRef.value) return
   isContextShow.value = false
   if (!isGoForward.value) return
@@ -83,8 +88,9 @@ const forwardHandler = () => {
 const initWebViewHook = (showConsoleLog = false) => {
   if (!webViewRef.value) return
   webViewRef.value.addEventListener('new-window', (event: { url: string; }) => {
-    console.log('new-window', event)
+    console.log('新打开页面', event)
     webViewRef.value.loadURL(event.url)
+    curLink.value = event.url
   })
 
   webViewRef.value.addEventListener('did-start-loading', () => {
@@ -101,8 +107,17 @@ const initWebViewHook = (showConsoleLog = false) => {
 
   webViewRef.value.addEventListener('dom-ready', () => {
     showConsoleLog && console.log('4.主页面文档加载')
+    // 补充信息
+    isLoading.value = webViewRef.value.isLoading() // 是否加载完成
+    let getURL = webViewRef.value.getAttribute('src') // 访客页面URL This.webViews.getAttribute('src')
+    let getTitle = webViewRef.value.getTitle() // 访客页面标题
     isGoBack.value = webViewRef.value.canGoBack()
     isGoForward.value = webViewRef.value.canGoForward()
+    curLink.value = getURL
+    tag.editTagItemById({
+      id: props.id,
+      name: getTitle,
+    })
   })
 
   webViewRef.value.addEventListener('did-frame-finish-load',() => {
@@ -117,8 +132,14 @@ const initWebViewHook = (showConsoleLog = false) => {
     showConsoleLog && console.log('7.页面停止加载')
   })
 
-  webViewRef.value.addEventListener('page-favicon-updated',() => {
+  webViewRef.value.addEventListener('page-favicon-updated',(e: { favicons: string | any[]; }) => {
     showConsoleLog && console.log('8、网页icon更新')
+    if(e.favicons && e.favicons.length > 0){
+      tag.editTagItemById({
+        id: props.id,
+        icon: e.favicons[0],
+      })
+    }
   })
 
   webViewRef.value.addEventListener('did-fail-load',() => {
@@ -149,7 +170,8 @@ const handleChangeUrl = (params: { ev: any; webUrl: any; }) => {
       // 百度一下内容
       webUrl = `https://www.baidu.com/s?ie=UTF-8&wd=${webUrl}`
     }
-    tag.editCurTagItem({
+    tag.editTagItemById({
+      id: props.id,
       link: webUrl
     })
   }

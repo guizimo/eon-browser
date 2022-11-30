@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 
-import {ref} from "vue";
+import {ref, watch} from "vue";
 
 const props = defineProps({
   link: String
@@ -27,6 +27,13 @@ const props = defineProps({
 const emit = defineEmits(['change', 'reload', 'goBack', 'forward'])
 
 const webUrl = ref(props.link)
+
+watch(
+    () => props.link,
+    (newProps) => {
+      webUrl.value = newProps
+    }
+);
 
 const handleChangeUrl = (ev: { key: string; }) => {
   emit('change', {ev, webUrl: webUrl.value})

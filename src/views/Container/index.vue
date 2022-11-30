@@ -20,6 +20,7 @@
           :key="`view-${item.id}`"
           :link="item.link"
           :linkMessage="item"
+          :id="item.id"
           :show="curTagId === item.id"
       >
       </WebViewHtml>

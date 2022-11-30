@@ -43,9 +43,9 @@ export const useTagStore = defineStore('tag', {
     /**
      * 编辑窗口信息
      */
-    editCurTagItem(params: any) {
+    editTagItemById(params: any) {
       for (let i = 0; i < this.tagList.length; i++) {
-        if (this.tagList[i].id === this.curTagId) {
+        if (this.tagList[i].id === params.id) {
           this.tagList[i] = {
             ...this.tagList[i],
             ...params
