@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <BookMark/>
     <div class="tag-container">
       <div class="tag-list">
         <div class="tag-item" v-for="item of tagList" :key="`title-${item.id}`" :class="curTagId === item.id ? 'select-item' : ''">
@@ -22,8 +23,7 @@
           :linkMessage="item"
           :id="item.id"
           :show="curTagId === item.id"
-      >
-      </WebViewHtml>
+      />
     </div>
   </div>
 </template>
@@ -33,6 +33,7 @@
 import {onMounted, ref} from 'vue'
 import {useTagStore} from "../../store/modules/tager";
 import WebViewHtml from '../WebView/index.vue'
+import BookMark from '../../components/BookMark/index.vue'
 import {tempTagItem} from "./models";
 import {storeToRefs} from "pinia";
 
