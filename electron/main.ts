@@ -1,5 +1,6 @@
 // electron/main.ts
 import { app, BrowserWindow, Menu, protocol, globalShortcut } from 'electron'
+import { join } from 'path'
 
 protocol.registerSchemesAsPrivileged([
   {
@@ -30,8 +31,9 @@ const createWindow = () => {
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {
+
     // load your file
-    mainWindow.loadFile('index.html')
+    mainWindow.loadFile(join(__dirname, '../index.html'))
   }
 
   // if (process.platform === 'darwin') {

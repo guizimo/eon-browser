@@ -1,7 +1,7 @@
 {
   "name": "gzm-browser",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.1",
   "main": "dist/electron/main.js",
   "scripts": {
     "dev": "vite",
@@ -31,5 +31,40 @@
     "vite": "^3.1.0",
     "vite-plugin-electron": "^0.9.3",
     "vue-tsc": "^0.40.4"
+  },
+  "build": {
+    "appId": "com.electron.desktop",
+    "productName": "GZMBrowser",
+    "asar": true,
+    "copyright": "Copyright © 2022 Guizimo",
+    "directories": {
+      "output": "release/${version}"
+    },
+    "files": [
+      "dist"
+    ],
+    "mac": {
+      "artifactName": "${productName}_${version}.${ext}",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}_${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    }
   }
 }
