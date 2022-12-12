@@ -1,10 +1,11 @@
 <template>
   <div class="container">
+    <BookMark/>
     <div class="tag-container">
       <div class="tag-list">
         <div class="tag-item" v-for="item of tagList" :key="`title-${item.id}`" :class="curTagId === item.id ? 'select-item' : ''">
           <img class="tag-item-icon" @click="selectTag(item.id)" :src="item.icon" alt="">
-          <div class="tag-item-title" @click="selectTag(item.id)">{{item.id}}</div>
+          <div class="tag-item-title" @click="selectTag(item.id)">{{item.name}}</div>
           <div class="tag-item-close">
             <el-icon class="tag-item-close-icon" @click="closeTag(item.id)"><Close /></el-icon>
           </div>
@@ -20,9 +21,9 @@
           :key="`view-${item.id}`"
           :link="item.link"
           :linkMessage="item"
+          :id="item.id"
           :show="curTagId === item.id"
-      >
-      </WebViewHtml>
+      />
     </div>
   </div>
 </template>
@@ -32,6 +33,7 @@
 import {onMounted, ref} from 'vue'
 import {useTagStore} from "../../store/modules/tager";
 import WebViewHtml from '../WebView/index.vue'
+import BookMark from '../../components/BookMark/index.vue'
 import {tempTagItem} from "./models";
 import {storeToRefs} from "pinia";
 
@@ -56,6 +58,7 @@ const selectTag = (id: string) => {
   tag.selectTagItem(id)
 }
 
+// 当标签列表为空时，新打开一个默认窗口
 if(tagList.value.length === 0) {
   openNewTag()
 }

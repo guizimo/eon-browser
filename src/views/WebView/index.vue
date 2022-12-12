@@ -1,12 +1,13 @@
 <template>
   <div class="view-container" v-show="show">
     <div class="tool-bar-container">
-      <ToolBar :link="link" @reload="reloadHandler" @goBack="goBackHandler" @forward="forwardHandler" @change="handleChangeUrl"></ToolBar>
+      <ToolBar :link="curLink" @reload="reloadHandler" @goBack="goBackHandler" @forward="forwardHandler" @change="handleChangeUrl"></ToolBar>
     </div>
     <div class="view">
-      <webview
+      <WebView
           nodeintegration
           plugins
+          allowpopups
           class="view-container"
           disablewebsecurity
           :httpreferrer='httpreferrer'
@@ -14,7 +15,7 @@
           style="display: inline-flex;"
           :src='link'
       >
-      </webview>
+      </WebView>
     </div>
   </div>
 </template>
@@ -27,11 +28,13 @@
  */
 import {onMounted, ref} from "vue";
 import ToolBar from '../../components/ToolBar/index.vue'
+import {useTagStore} from "../../store/modules/tager";
 
 const webViewRef = ref(null as any)
 
 const props = defineProps({
   link: String,
+  id: String,
   linkMessage: Object,
   show: Boolean
 })
@@ -43,12 +46,19 @@ const isContextShow = ref(false)
 // 是否可以后退
 const isGoBack = ref(false)
 // 是否可以前进
-const isForward = ref(false)
+const isGoForward = ref(false)
 // 是否停止
 const isStop = ref(false)
 // 是否页面正常加载
 const isPageNormal = ref(false)
+// 页面是否在加载中
+const isLoading = ref(false)
+// 当前curLink
+const curLink = ref(props.link)
 
+const tag = useTagStore()
+
+// 刷新页面
 const reloadHandler = () => {
   console.log('点击刷新按钮')
   if (!webViewRef.value) return
@@ -70,47 +80,66 @@ const forwardHandler = () => {
   console.log('点击前进按钮')
   if (!webViewRef.value) return
   isContextShow.value = false
-  if (!isForward.value) return
+  if (!isGoForward.value) return
   webViewRef.value.goForward()
 }
 
 // 初始化Hook
-const initWebViewHook = () => {
+const initWebViewHook = (showConsoleLog = false) => {
   if (!webViewRef.value) return
-  webViewRef.value.addEventListener('new-window', () => {
-    console.log('new-window')
+  webViewRef.value.addEventListener('new-window', (event: { url: string; }) => {
+    console.log('新打开页面', event)
+    webViewRef.value.loadURL(event.url)
+    curLink.value = event.url
   })
 
   webViewRef.value.addEventListener('did-start-loading', () => {
-    console.log('1.页面开始加载')
+    showConsoleLog && console.log('1.页面开始加载')
   })
 
   webViewRef.value.addEventListener('load-commit', () => {
-    console.log('2.主页面文档加载')
+    showConsoleLog && console.log('2.主页面文档加载')
   })
 
   webViewRef.value.addEventListener('page-title-updated', () => {
-    console.log('3.主页面标题更新')
+    showConsoleLog && console.log('3.主页面标题更新')
   })
 
   webViewRef.value.addEventListener('dom-ready', () => {
-    console.log('4.主页面文档加载')
+    showConsoleLog && console.log('4.主页面文档加载')
+    // 补充信息
+    isLoading.value = webViewRef.value.isLoading() // 是否加载完成
+    let getURL = webViewRef.value.getAttribute('src') // 访客页面URL This.webViews.getAttribute('src')
+    let getTitle = webViewRef.value.getTitle() // 访客页面标题
+    isGoBack.value = webViewRef.value.canGoBack()
+    isGoForward.value = webViewRef.value.canGoForward()
+    curLink.value = getURL
+    tag.editTagItemById({
+      id: props.id,
+      name: getTitle,
+    })
   })
 
   webViewRef.value.addEventListener('did-frame-finish-load',() => {
-    console.log('5.frame 加载完成')
+    showConsoleLog && console.log('5.frame 加载完成')
   })
 
   webViewRef.value.addEventListener('did-finish-load',() => {
-    console.log('6.主框架frame 加载完成')
+    showConsoleLog && console.log('6.主框架frame 加载完成')
   })
 
   webViewRef.value.addEventListener('did-stop-loading',() => {
-    console.log('7.页面停止加载')
+    showConsoleLog && console.log('7.页面停止加载')
   })
 
-  webViewRef.value.addEventListener('page-favicon-updated',() => {
-    console.log('8、网页icon更新')
+  webViewRef.value.addEventListener('page-favicon-updated',(e: { favicons: string | any[]; }) => {
+    showConsoleLog && console.log('8、网页icon更新')
+    if(e.favicons && e.favicons.length > 0){
+      tag.editTagItemById({
+        id: props.id,
+        icon: e.favicons[0],
+      })
+    }
   })
 
   webViewRef.value.addEventListener('did-fail-load',() => {
@@ -127,9 +156,25 @@ onMounted(() => {
   initWebViewHook()
 })
 
-
-const handleChangeUrl = (ev: { key: string; }) => {
-
+// 更新URL
+const handleChangeUrl = (params: { ev: any; webUrl: any; }) => {
+  let {ev, webUrl} = params
+  if (ev.key == 'Enter') {
+    let urlRG = /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
+    if (webUrl && urlRG.test(webUrl)) {
+      // 这是一个网址
+      if (!webUrl.startsWith('http://') && !webUrl.startsWith('https://')) {
+        webUrl = 'https://' + webUrl
+      }
+    } else {
+      // 百度一下内容
+      webUrl = `https://www.baidu.com/s?ie=UTF-8&wd=${webUrl}`
+    }
+    tag.editTagItemById({
+      id: props.id,
+      link: webUrl
+    })
+  }
 }
 
 </script>

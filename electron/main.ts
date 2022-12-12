@@ -1,5 +1,6 @@
 // electron/main.ts
 import { app, BrowserWindow, Menu, protocol, globalShortcut } from 'electron'
+import { join } from 'path'
 
 protocol.registerSchemesAsPrivileged([
   {
@@ -30,8 +31,9 @@ const createWindow = () => {
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {
+
     // load your file
-    mainWindow.loadFile('index.html')
+    mainWindow.loadFile(join(__dirname, '../index.html'))
   }
 
   // if (process.platform === 'darwin') {
@@ -61,4 +63,16 @@ app.whenReady().then(() => {
 // 所有的窗口关闭
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
+})
+
+// 阻止新开窗口
+let contentTemp: any = null
+
+const newWindowListener = (event: Event) => {
+  event.preventDefault()
+  contentTemp?.removeListener('new-window', newWindowListener)
+}
+app.on('web-contents-created', (event, webContents) => {
+  webContents.addListener('new-window', newWindowListener)
+  contentTemp = webContents
 })

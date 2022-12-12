@@ -21,4 +21,5 @@ const bootstrap = () => {
   app.use(ElementPlus).use(router).mount('#app')
 }
 
+// 初始化
 bootstrap()
