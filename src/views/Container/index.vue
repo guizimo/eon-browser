@@ -1,20 +1,20 @@
 <template>
   <div class="container">
-    <BookMark/>
-    <div class="tag-container">
-      <div class="tag-list">
-        <div class="tag-item" v-for="item of tagList" :key="`title-${item.id}`" :class="curTagId === item.id ? 'select-item' : ''">
-          <img class="tag-item-icon" @click="selectTag(item.id)" :src="item.icon" alt="">
-          <div class="tag-item-title" @click="selectTag(item.id)">{{item.name}}</div>
-          <div class="tag-item-close">
-            <el-icon class="tag-item-close-icon" @click="closeTag(item.id)"><Close /></el-icon>
-          </div>
-        </div>
-      </div>
-      <div class="add-tag">
-        <el-icon class="add-tag-icon" @click="openNewTag()"><Plus /></el-icon>
-      </div>
-    </div>
+    <SideBar/>
+<!--    <div class="tag-container">-->
+<!--      <div class="tag-list">-->
+<!--        <div class="tag-item" v-for="item of tagList" :key="`title-${item.id}`" :class="curTagId === item.id ? 'select-item' : ''">-->
+<!--          <img class="tag-item-icon" @click="selectTag(item.id)" :src="item.icon" alt="">-->
+<!--          <div class="tag-item-title" @click="selectTag(item.id)">{{item.name}}</div>-->
+<!--          <div class="tag-item-close">-->
+<!--            <el-icon class="tag-item-close-icon" @click="closeTag(item.id)"><Close /></el-icon>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="add-tag">-->
+<!--        <el-icon class="add-tag-icon" @click="openNewTag()"><Plus /></el-icon>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="view-container">
       <WebViewHtml
           v-for="item of tagList"
@@ -33,6 +33,7 @@
 import {onMounted, ref} from 'vue'
 import {useTagStore} from "../../store/modules/tager";
 import WebViewHtml from '../WebView/index.vue'
+import SideBar from '../SideBar/index.vue'
 import BookMark from '../../components/BookMark/index.vue'
 import {tempTagItem} from "./models";
 import {storeToRefs} from "pinia";

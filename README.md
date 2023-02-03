@@ -21,3 +21,19 @@ yarn electron:serve
 2、[Element](https://element-plus.org/zh-CN)
 
 3、[pinia](https://pinia.vuejs.org/)
+
+
+
+
+
+## 主题
+
+1、背景色：#e8e7fe
+
+2、灰色：#65646f
+
+3、浅灰：
+
+## 鸣谢
+
+1、https://github.com/cgq001/browser

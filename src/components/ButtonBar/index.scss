@@ -1,0 +1,30 @@
+.button-bar-container {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .occupy-space{
+    width: 80px;
+  }
+
+  .tool-icon-content {
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .tool-icon {
+      font-size: 22px;
+      color: #65646f;
+    }
+
+    &:hover {
+      background: #e5eaea;
+    }
+  }
+}

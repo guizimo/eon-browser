@@ -1,0 +1,23 @@
+.url-bar-container {
+  margin: 10px;
+  height: 30px;
+  width: 100%;
+  background: #F1F3F4;
+  border-radius: 13px;
+  overflow: hidden;
+
+  .tool-search-input {
+    flex: 1;
+    height: 30px;
+    border-radius: 15px;
+    width: 100%;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    padding: 0 25px;
+    box-sizing: border-box;
+    background: #F1F3F4;
+    font-size: 14px;
+    color: #404243;
+  }
+}
