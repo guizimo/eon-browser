@@ -1,8 +1,14 @@
 <template>
   <div class="bookmark-container">
-    <div v-for="(item, index) of bookMarkList" :key="`bookmark_${index}`" class="bookmark-item" @click="openNewTagHandler(item)">
-      <img :src="item.icon" alt="" class=bookmark-item-img>
-      <div class="bookmark-item-text">{{item.name}}</div>
+    <div class="bookmark-container-title">
+      <i class="iconfont icon-task title-img"></i>
+      <div class="title-text">书签</div>
+    </div>
+    <div class="bookmark-list">
+      <div v-for="(item, index) of bookMarkList" :key="`bookmark_${index}`" class="bookmark-item" @click="openNewTagHandler(item)">
+        <img :src="item.icon" alt="" class=bookmark-item-img>
+        <!--      <div class="bookmark-item-text">{{item.name}}</div>-->
+      </div>
     </div>
   </div>
 </template>

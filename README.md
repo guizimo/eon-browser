@@ -1,6 +1,13 @@
 # gzm-browser
 
+## 介绍
+
+![首页](https://guizimo.oss-cn-shanghai.aliyuncs.com/img/image-20230206144049227.png)
+
+
+
 ## 运行
+
 拉取依赖
 ```zsh
 yarn

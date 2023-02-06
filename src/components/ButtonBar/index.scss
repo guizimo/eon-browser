@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  -webkit-app-region: drag;
 
   .occupy-space{
     width: 80px;
@@ -12,7 +13,7 @@
     margin-left: 5px;
     width: 30px;
     height: 30px;
-    border-radius: 100%;
+    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +25,8 @@
     }
 
     &:hover {
-      background: #e5eaea;
+      background: #d4d3e9;
     }
   }
+
 }
