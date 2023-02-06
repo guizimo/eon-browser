@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <SideBar/>
+    <SideBar :link="getCurTag()"/>
     <div class="view-container">
       <WebViewHtml
           v-for="item of tagList"
@@ -24,6 +24,12 @@ import {storeToRefs} from "pinia";
 const tag = useTagStore()
 // 响应式
 const {tagList, curTagId} = storeToRefs(tag)
+
+
+const getCurTag = () => {
+  const curItem = tagList.value.find(item => item.id === curTagId.value)
+  return curItem?.link
+}
 
 </script>
 
