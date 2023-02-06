@@ -1,14 +1,11 @@
 <template>
-  <div class="view-container" v-show="show">
-    <div class="tool-bar-container">
-      <ToolBar :link="curLink" @reload="reloadHandler" @goBack="goBackHandler" @forward="forwardHandler" @change="handleChangeUrl"></ToolBar>
-    </div>
+  <div class="web-view-container" v-show="show">
     <div class="view">
       <WebView
           nodeintegration
           plugins
           allowpopups
-          class="view-container"
+          class="view-container-core"
           disablewebsecurity
           :httpreferrer='httpreferrer'
           ref="webViewRef"
@@ -16,6 +13,11 @@
           :src='link'
       >
       </WebView>
+      <div class="context-menu" v-if="isContextShow">
+        <div class="context-menu-item" @click="goConsole">
+          控制台
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +29,6 @@
  * https://www.electronjs.org/zh/docs/latest/api/webview-tag
  */
 import {onMounted, ref} from "vue";
-import ToolBar from '../../components/ToolBar/index.vue'
 import {useTagStore} from "../../store/modules/tager";
 
 const webViewRef = ref(null as any)
@@ -53,10 +54,18 @@ const isStop = ref(false)
 const isPageNormal = ref(false)
 // 页面是否在加载中
 const isLoading = ref(false)
+
 // 当前curLink
 const curLink = ref(props.link)
 
+
 const tag = useTagStore()
+
+// 设置iframe样式
+const setIframeStyle = () => {
+  console.log(webViewRef.value, webViewRef.value.shadowRoot.querySelector('iframe'))
+  webViewRef.value.shadowRoot.querySelector('iframe').style.borderRadius = "6px"
+}
 
 // 刷新页面
 const reloadHandler = () => {
@@ -84,6 +93,13 @@ const forwardHandler = () => {
   webViewRef.value.goForward()
 }
 
+// 打开控制台
+const goConsole = () => {
+  if (!webViewRef.value.isDevToolsOpened()) {
+    webViewRef.value.openDevTools()
+  }
+}
+
 // 初始化Hook
 const initWebViewHook = (showConsoleLog = false) => {
   if (!webViewRef.value) return
@@ -95,6 +111,7 @@ const initWebViewHook = (showConsoleLog = false) => {
 
   webViewRef.value.addEventListener('did-start-loading', () => {
     showConsoleLog && console.log('1.页面开始加载')
+    setIframeStyle()
   })
 
   webViewRef.value.addEventListener('load-commit', () => {
@@ -148,6 +165,9 @@ const initWebViewHook = (showConsoleLog = false) => {
 
   webViewRef.value.addEventListener('context-menu',() => {
     console.log('点击右键')
+    if (!isContextShow.value) {
+      isContextShow.value = true
+    }
   })
 }
 
@@ -156,26 +176,6 @@ onMounted(() => {
   initWebViewHook()
 })
 
-// 更新URL
-const handleChangeUrl = (params: { ev: any; webUrl: any; }) => {
-  let {ev, webUrl} = params
-  if (ev.key == 'Enter') {
-    let urlRG = /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
-    if (webUrl && urlRG.test(webUrl)) {
-      // 这是一个网址
-      if (!webUrl.startsWith('http://') && !webUrl.startsWith('https://')) {
-        webUrl = 'https://' + webUrl
-      }
-    } else {
-      // 百度一下内容
-      webUrl = `https://www.baidu.com/s?ie=UTF-8&wd=${webUrl}`
-    }
-    tag.editTagItemById({
-      id: props.id,
-      link: webUrl
-    })
-  }
-}
 
 </script>
 

@@ -20,7 +20,11 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 // 创建浏览器窗口
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    title: 'Main window',
+    title: 'GZM Browsers',
+    titleBarStyle: 'hidden',
+    width: 1200,
+    height: 750,
+    trafficLightPosition: { x: 15, y: 20 },
     webPreferences: {
       webviewTag: true,
       nodeIntegration: true,

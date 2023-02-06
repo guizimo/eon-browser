@@ -1,6 +1,13 @@
 # gzm-browser
 
+## 介绍
+
+![首页](https://guizimo.oss-cn-shanghai.aliyuncs.com/img/image-20230206144049227.png)
+
+
+
 ## 运行
+
 拉取依赖
 ```zsh
 yarn
@@ -21,3 +28,19 @@ yarn electron:serve
 2、[Element](https://element-plus.org/zh-CN)
 
 3、[pinia](https://pinia.vuejs.org/)
+
+
+
+
+
+## 主题
+
+1、背景色：#e8e7fe
+
+2、灰色：#65646f
+
+3、浅灰：
+
+## 鸣谢
+
+1、https://github.com/cgq001/browser
