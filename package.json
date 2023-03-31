@@ -1,17 +1,19 @@
 {
   "name": "gzm-browser",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.6",
   "main": "dist/electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "electron:serve": "electron .",
-    "electron:build": "rimraf dist && vite build && electron-builder"
+    "electron:build": "rimraf dist && vite build && electron-builder",
+    "electron:generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
+    "electron-icon-builder": "^2.0.1",
     "element-plus": "^2.2.16",
     "pinia": "^2.0.22",
     "uuid": "^9.0.0",
@@ -21,7 +23,7 @@
   "devDependencies": {
     "@types/uuid": "^8.3.4",
     "@vitejs/plugin-vue": "^3.1.0",
-    "electron": "^20.1.2",
+    "electron": "^20.3.12",
     "electron-builder": "^23.3.3",
     "electron-devtools-installer": "^3.2.0",
     "prettier": "^2.7.1",
@@ -36,7 +38,7 @@
     "appId": "com.electron.desktop",
     "productName": "GZMBrowser",
     "asar": true,
-    "copyright": "Copyright © 2022 Guizimo",
+    "copyright": "Copyright © 2023 Guizimo",
     "directories": {
       "output": "release/${version}"
     },
@@ -45,11 +47,13 @@
     ],
     "mac": {
       "artifactName": "${productName}_${version}.${ext}",
+      "icon": "build/icons/512x512.png",
       "target": [
         "dmg"
       ]
     },
     "win": {
+      "icon": "build/icons/512x512.png",
       "target": [
         {
           "target": "nsis",
