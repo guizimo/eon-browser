@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-contextBridge.exposeInMainWorld("electron", {
+contextBridge.exposeInMainWorld("Electron", {
   ipcRenderer,
 });
 

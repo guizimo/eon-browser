@@ -38,7 +38,8 @@ import { ref } from 'vue';
 const tag = useTagStore()
 
 const props = defineProps({
-  link: String
+  link: String,
+  id: String
 })
 
 const sideBarShow = ref(true)
@@ -67,13 +68,14 @@ const changeUrlHandler = (params: { ev: any; webUrl: any; }) => {
 // 收起侧边栏
 const putAwayHandler = () => {
   sideBarShow.value = false
-  window.electron.ipcRenderer.send('put-away-traffic-light')
+  window.Electron.ipcRenderer.send('put-away-traffic-light')
 }
 
 // 打开侧边栏
 const openAwayHandler = () => {
   sideBarShow.value = true
-  window.electron.ipcRenderer.send('open-away-traffic-light')
+  //
+  window.Electron.ipcRenderer.send('open-away-traffic-light')
 }
 
 </script>
