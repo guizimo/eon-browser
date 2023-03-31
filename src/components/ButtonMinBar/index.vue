@@ -1,6 +1,5 @@
 <template>
   <div class="button-bar-container">
-    <div class="occupy-space"></div>
     <span class="tool-icon-content">
       <i class="iconfont icon-arrow-left tool-icon" @click="goBack"></i>
     </span>
@@ -11,7 +10,7 @@
       <i class="iconfont icon-refresh tool-icon" @click="reload"></i>
     </span>
     <span class="tool-icon-content">
-      <i class="iconfont icon-put-away tool-icon" @click="putAway"></i>
+      <i class="iconfont icon-open tool-icon" @click="openAway"></i>
     </span>
   </div>
 
@@ -19,7 +18,7 @@
 
 <script lang="ts" setup>
 
-const emit = defineEmits(['reload', 'goBack', 'forward', 'putAway'])
+const emit = defineEmits(['reload', 'goBack', 'forward', 'openAway'])
 
 // 刷新按钮
 const reload = () => {
@@ -37,8 +36,8 @@ const forward = () => {
 }
 
 // 收起按钮
-const putAway = () => {
-  emit('putAway')
+const openAway = () => {
+  emit('openAway')
 }
 
 </script>

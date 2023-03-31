@@ -1,5 +1,5 @@
 // electron/main.ts
-import { app, BrowserWindow, Menu, protocol, globalShortcut } from 'electron'
+import { app, BrowserWindow, Menu, protocol, globalShortcut, ipcMain } from 'electron'
 import { join } from 'path'
 
 protocol.registerSchemesAsPrivileged([
@@ -17,15 +17,18 @@ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 // 取消菜单栏
 // Menu.setApplicationMenu(null)
 
+let mainWindow: BrowserWindow
+
 // 创建浏览器窗口
 const createWindow = () => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     title: 'GZM Browsers',
     titleBarStyle: 'hidden',
     width: 1200,
     height: 750,
     trafficLightPosition: { x: 15, y: 20 },
     webPreferences: {
+      preload: join(__dirname, '../electron/preload.js'),
       webviewTag: true,
       nodeIntegration: true,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
@@ -79,4 +82,13 @@ const newWindowListener = (event: Event) => {
 app.on('web-contents-created', (event, webContents) => {
   webContents.addListener('new-window', newWindowListener)
   contentTemp = webContents
+})
+
+
+ipcMain.on('put-away-traffic-light', () => {
+  mainWindow.setWindowButtonVisibility(false)
+})
+
+ipcMain.on('open-away-traffic-light', () => {
+  mainWindow.setWindowButtonVisibility(true)
 })

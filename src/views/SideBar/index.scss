@@ -1,4 +1,20 @@
 .side-bar-container {
-  width: 220px;
-  padding: 10px 0 10px 10px;
+  padding: 10px 0;
+  display: flex;
 }
+
+.hide-min {
+  height: 100%;
+  width: 10px;
+}
+
+.side-box {
+  width: 210px;
+  margin-right: 10px;
+}
+
+.hide-popover {
+  height: 100%;
+  width: 10px
+}
+

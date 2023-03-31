@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import electron from 'vite-plugin-electron'
+import { join } from "path";
 
 // https://vitejs.dev/config/
 // vite-plugin-electron https://github.com/electron-vite/vite-plugin-electron/tree/main/packages/electron#vite-plugin-electron
@@ -10,6 +11,9 @@ export default defineConfig({
     electron({
       main: {
         entry: 'electron/main.ts'
+      },
+      preload: {
+        input: join(__dirname, './electron/preload.ts')
       }
     })
   ],
