@@ -37,8 +37,9 @@ const createWindow = () => {
 
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
+    // 开发者工具
+    mainWindow.webContents.openDevTools()
   } else {
-
     // load your file
     mainWindow.loadFile(join(__dirname, '../index.html'))
   }
@@ -52,9 +53,6 @@ const createWindow = () => {
   //     contents.paste()
   //   })
   // }
-
-  // 开发者工具
-  mainWindow.webContents.openDevTools()
 }
 
 // Electron结束初始化和创建浏览器窗口时调用

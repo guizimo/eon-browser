@@ -1,7 +1,7 @@
 {
   "name": "gzm-browser",
   "private": true,
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "dist/electron/main.js",
   "scripts": {
     "dev": "vite",
