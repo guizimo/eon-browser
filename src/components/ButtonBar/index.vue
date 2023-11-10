@@ -1,17 +1,17 @@
 <template>
   <div class="button-bar-container">
-    <div class="occupy-space"></div>
+    <div class="occupy-space" />
     <span class="tool-icon-content">
-      <i class="iconfont icon-arrow-left tool-icon" @click="goBack"></i>
+      <i class="iconfont icon-arrow-left tool-icon" @click="goBack" />
     </span>
     <span class="tool-icon-content">
-      <i class="iconfont icon-arrow-right tool-icon" @click="forward"></i>
+      <i class="iconfont icon-arrow-right tool-icon" @click="forward" />
     </span>
     <span class="tool-icon-content">
-      <i class="iconfont icon-refresh tool-icon" @click="reload"></i>
+      <i class="iconfont icon-refresh tool-icon" @click="reload" />
     </span>
     <span class="tool-icon-content">
-      <i class="iconfont icon-put-away tool-icon" @click="putAway"></i>
+      <i class="iconfont icon-put-away tool-icon" @click="putAway" />
     </span>
   </div>
 </template>

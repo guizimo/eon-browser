@@ -11,8 +11,7 @@
         ref="webViewRef"
         style="display: inline-flex"
         :src="link"
-      >
-      </WebView>
+      />
       <div class="context-menu" v-if="isContextShow">
         <div class="context-menu-item" @click="goConsole">控制台</div>
       </div>
@@ -125,8 +124,8 @@ const initWebViewHook = (showConsoleLog = false) => {
     showConsoleLog && console.log('4.主页面文档加载')
     // 补充信息
     isLoading.value = webViewRef.value.isLoading() // 是否加载完成
-    let getURL = webViewRef.value.getAttribute('src') // 访客页面URL This.webViews.getAttribute('src')
-    let getTitle = webViewRef.value.getTitle() // 访客页面标题
+    const getURL = webViewRef.value.getAttribute('src') // 访客页面URL This.webViews.getAttribute('src')
+    const getTitle = webViewRef.value.getTitle() // 访客页面标题
     isGoBack.value = webViewRef.value.canGoBack()
     isGoForward.value = webViewRef.value.canGoForward()
     curLink.value = getURL

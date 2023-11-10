@@ -1,7 +1,7 @@
 <template>
   <div class="tag-bar-container">
     <div class="tag-bar-container-title" @click="openNewTag()">
-      <i class="iconfont icon-plus title-img"></i>
+      <i class="iconfont icon-plus title-img" />
       <div class="title-text">New Tab</div>
     </div>
     <div class="tag-bar-list">
@@ -24,7 +24,7 @@
           <i
             class="iconfont icon-close tag-bar-item-icon"
             @click="closeTag(item.id)"
-          ></i>
+          />
         </div>
       </div>
     </div>

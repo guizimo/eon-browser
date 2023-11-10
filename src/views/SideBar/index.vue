@@ -8,7 +8,7 @@
         v-if="!sideBarShow"
       >
         <template #reference>
-          <div class="hide-popover"></div>
+          <div class="hide-popover" />
         </template>
         <template #default>
           <ButtonMinBar @openAway="openAwayHandler" />
@@ -46,7 +46,7 @@ const sideBarShow = ref(true)
 const changeUrlHandler = (params: { ev: any; webUrl: any }) => {
   let { ev, webUrl } = params
   if (ev.key == 'Enter') {
-    let urlRG =
+    const urlRG =
       /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
     if (webUrl && urlRG.test(webUrl)) {
       // 这是一个网址

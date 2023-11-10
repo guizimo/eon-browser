@@ -1,7 +1,7 @@
 <template>
   <div class="bookmark-container">
     <div class="bookmark-container-title">
-      <i class="iconfont icon-task title-img"></i>
+      <i class="iconfont icon-task title-img" />
       <div class="title-text">书签</div>
     </div>
     <div class="bookmark-list">
