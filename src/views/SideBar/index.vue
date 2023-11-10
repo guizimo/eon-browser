@@ -8,32 +8,30 @@
         v-if="!sideBarShow"
       >
         <template #reference>
-          <div class="hide-popover"></div>
+          <div class="hide-popover" />
         </template>
         <template #default>
-          <ButtonMinBar @openAway="openAwayHandler"/>
+          <ButtonMinBar @openAway="openAwayHandler" />
         </template>
       </el-popover>
     </div>
     <div class="side-box" v-if="sideBarShow">
-      <ButtonBar @putAway="putAwayHandler"/>
-      <UrlBar :link="props.link" @change="changeUrlHandler"/>
-      <BookMark/>
-      <TagBar/>
+      <ButtonBar @putAway="putAwayHandler" />
+      <UrlBar :link="props.link" @change="changeUrlHandler" />
+      <BookMark />
+      <TagBar />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-
 import ButtonBar from '../../components/ButtonBar/index.vue'
 import ButtonMinBar from '../../components/ButtonMinBar/index.vue'
 import UrlBar from '../../components/UrlBar/index.vue'
 import BookMark from '../../components/BookMark/index.vue'
 import TagBar from '../../components/TagBar/index.vue'
-import { useTagStore } from "../../store/modules/tager";
-import { ref } from 'vue';
-
+import { useTagStore } from '../../store/modules/tager'
+import { ref } from 'vue'
 
 const tag = useTagStore()
 
@@ -45,10 +43,11 @@ const props = defineProps({
 const sideBarShow = ref(true)
 
 // 更新URL
-const changeUrlHandler = (params: { ev: any; webUrl: any; }) => {
-  let {ev, webUrl} = params
+const changeUrlHandler = (params: { ev: any; webUrl: any }) => {
+  let { ev, webUrl } = params
   if (ev.key == 'Enter') {
-    let urlRG = /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
+    const urlRG =
+      /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
     if (webUrl && urlRG.test(webUrl)) {
       // 这是一个网址
       if (!webUrl.startsWith('http://') && !webUrl.startsWith('https://')) {
@@ -77,7 +76,6 @@ const openAwayHandler = () => {
   //
   window.Electron.ipcRenderer.send('open-away-traffic-light')
 }
-
 </script>
 
 <style lang="scss">
