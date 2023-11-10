@@ -1,7 +1,7 @@
 {
-  "name": "gzm-browser",
+  "name": "eon-browser",
   "private": true,
-  "version": "1.1.6",
+  "version": "2.0.1",
   "main": "dist/electron/main.js",
   "scripts": {
     "dev": "vite",
@@ -35,8 +35,8 @@
     "vue-tsc": "^0.40.4"
   },
   "build": {
-    "appId": "com.electron.desktop",
-    "productName": "GZMBrowser",
+    "appId": "com.EonBrowser.desktop",
+    "productName": "EonBrowser",
     "asar": true,
     "copyright": "Copyright © 2023 Guizimo",
     "directories": {
