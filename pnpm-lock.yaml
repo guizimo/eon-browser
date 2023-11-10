@@ -54,9 +54,9 @@ devDependencies:
   vite:
     specifier: ^4.5.0
     version: registry.npmmirror.com/vite@4.5.0(sass@1.69.5)
-  vite-plugin-electron:
-    specifier: ^0.15.4
-    version: registry.npmmirror.com/vite-plugin-electron@0.15.4
+  vite-electron-plugin:
+    specifier: ^0.8.2
+    version: registry.npmmirror.com/vite-electron-plugin@0.8.2(esbuild@0.18.20)
   vue-tsc:
     specifier: ^1.8.22
     version: registry.npmmirror.com/vue-tsc@1.8.22(typescript@5.2.2)
@@ -3846,6 +3846,20 @@ packages:
     version: 1.2.0
     dev: false
 
+  registry.npmmirror.com/notbundle@0.4.0:
+    resolution: {integrity: sha512-fstkCyAyt5nqHch1GESWqkW9i/D2p80SacBEAoPNoRS0U6qBT6ZSUp2BayS+dbEWTHqheSzwxQwEEK/jpPObHw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/notbundle/-/notbundle-0.4.0.tgz}
+    name: notbundle
+    version: 0.4.0
+    peerDependencies:
+      '@swc/core': '*'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+    dependencies:
+      chokidar: registry.npmmirror.com/chokidar@3.5.3
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.2
+    dev: true
+
   registry.npmmirror.com/number-is-nan@1.0.1:
     resolution: {integrity: sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/number-is-nan/-/number-is-nan-1.0.1.tgz}
     name: number-is-nan
@@ -5128,18 +5142,30 @@ packages:
     dev: true
     optional: true
 
-  registry.npmmirror.com/vite-plugin-electron@0.15.4:
-    resolution: {integrity: sha512-aXGDjTXebJxNX+cf+KSZEsa9BcMrTbNhjZJaUhU5999/ATYZq4PlZpebfyeslyuYpjk6OdyA/pNC+fTeDYK5Kw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-electron/-/vite-plugin-electron-0.15.4.tgz}
-    name: vite-plugin-electron
-    version: 0.15.4
+  registry.npmmirror.com/vite-electron-plugin@0.8.2(esbuild@0.18.20):
+    resolution: {integrity: sha512-IN0sSi1MKVh2ewc6b+sSZjsBAyL4XjUvEI9pEvroGonvjk2Jj2Pd00zIabKIQPAnvnPmeRJgv+Hjn/lrvQZqQg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-electron-plugin/-/vite-electron-plugin-0.8.2.tgz}
+    id: registry.npmmirror.com/vite-electron-plugin/0.8.2
+    name: vite-electron-plugin
+    version: 0.8.2
     peerDependencies:
-      tree-kill: '*'
-      vite-plugin-electron-renderer: '*'
+      acorn: '*'
+      esbuild: '*'
     peerDependenciesMeta:
-      tree-kill:
+      acorn:
         optional: true
-      vite-plugin-electron-renderer:
-        optional: true
+    dependencies:
+      esbuild: registry.npmmirror.com/esbuild@0.18.20
+      fast-glob: registry.npmmirror.com/fast-glob@3.3.2
+      notbundle: registry.npmmirror.com/notbundle@0.4.0
+      vite-plugin-electron: registry.npmmirror.com/vite-plugin-electron@0.11.2
+    transitivePeerDependencies:
+      - '@swc/core'
+    dev: true
+
+  registry.npmmirror.com/vite-plugin-electron@0.11.2:
+    resolution: {integrity: sha512-umQRmSuA80JVxKB3PfO55o8mFTrW+sEtu7kZ5TYKAnkuYpKw7qgxl4f/65gp8x5BGHJjYh/iIRIE26x3Xqc4mQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-electron/-/vite-plugin-electron-0.11.2.tgz}
+    name: vite-plugin-electron
+    version: 0.11.2
     dev: true
 
   registry.npmmirror.com/vite@4.5.0(sass@1.69.5):
