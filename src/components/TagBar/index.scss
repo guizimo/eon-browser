@@ -1,5 +1,4 @@
 .tag-bar-container {
-
 }
 
 .tag-bar-container-title {
@@ -7,7 +6,6 @@
   align-items: center;
   height: 40px;
   margin-top: 10px;
-
 
   .title-img {
     color: #65646f;
@@ -20,15 +18,13 @@
     font-weight: 500;
   }
 
-  &:hover{
+  &:hover {
     background: #ddddf3;
     border-radius: 8px;
   }
 }
 
 .tag-bar-list {
-
-
   .tag-bar-item {
     height: 40px;
     display: flex;
@@ -41,7 +37,7 @@
     opacity: 0.7;
     margin: 10px 0;
 
-    &:hover{
+    &:hover {
       opacity: 1;
     }
   }
@@ -68,7 +64,7 @@
     justify-content: center;
     border-radius: 6px;
 
-    &:hover{
+    &:hover {
       background: #ced3d7;
     }
 

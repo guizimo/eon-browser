@@ -13,11 +13,9 @@
       <i class="iconfont icon-open tool-icon" @click="openAway"></i>
     </span>
   </div>
-
 </template>
 
 <script lang="ts" setup>
-
 const emit = defineEmits(['reload', 'goBack', 'forward', 'openAway'])
 
 // 刷新按钮
@@ -39,7 +37,6 @@ const forward = () => {
 const openAway = () => {
   emit('openAway')
 }
-
 </script>
 
 <style lang="scss" src="./index.scss" scoped></style>

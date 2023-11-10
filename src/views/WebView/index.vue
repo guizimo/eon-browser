@@ -2,34 +2,31 @@
   <div class="web-view-container" v-show="show">
     <div class="view">
       <WebView
-          nodeintegration
-          plugins
-          allowpopups
-          class="view-container-core"
-          disablewebsecurity
-          :httpreferrer='httpreferrer'
-          ref="webViewRef"
-          style="display: inline-flex;"
-          :src='link'
+        nodeintegration
+        plugins
+        allowpopups
+        class="view-container-core"
+        disablewebsecurity
+        :httpreferrer="httpreferrer"
+        ref="webViewRef"
+        style="display: inline-flex"
+        :src="link"
       >
       </WebView>
       <div class="context-menu" v-if="isContextShow">
-        <div class="context-menu-item" @click="goConsole">
-          控制台
-        </div>
+        <div class="context-menu-item" @click="goConsole">控制台</div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-
 /**
  * 官方文档
  * https://www.electronjs.org/zh/docs/latest/api/webview-tag
  */
-import {onMounted, ref} from "vue";
-import {useTagStore} from "../../store/modules/tager";
+import { onMounted, ref } from 'vue'
+import { useTagStore } from '../../store/modules/tager'
 
 const webViewRef = ref(null as any)
 
@@ -58,13 +55,15 @@ const isLoading = ref(false)
 // 当前curLink
 const curLink = ref(props.link)
 
-
 const tag = useTagStore()
 
 // 设置iframe样式
 const setIframeStyle = () => {
-  console.log(webViewRef.value, webViewRef.value.shadowRoot.querySelector('iframe'))
-  webViewRef.value.shadowRoot.querySelector('iframe').style.borderRadius = "6px"
+  console.log(
+    webViewRef.value,
+    webViewRef.value.shadowRoot.querySelector('iframe')
+  )
+  webViewRef.value.shadowRoot.querySelector('iframe').style.borderRadius = '6px'
 }
 
 // 刷新页面
@@ -103,7 +102,7 @@ const goConsole = () => {
 // 初始化Hook
 const initWebViewHook = (showConsoleLog = false) => {
   if (!webViewRef.value) return
-  webViewRef.value.addEventListener('new-window', (event: { url: string; }) => {
+  webViewRef.value.addEventListener('new-window', (event: { url: string }) => {
     console.log('新打开页面', event)
     webViewRef.value.loadURL(event.url)
     curLink.value = event.url
@@ -133,37 +132,40 @@ const initWebViewHook = (showConsoleLog = false) => {
     curLink.value = getURL
     tag.editTagItemById({
       id: props.id,
-      name: getTitle,
+      name: getTitle
     })
   })
 
-  webViewRef.value.addEventListener('did-frame-finish-load',() => {
+  webViewRef.value.addEventListener('did-frame-finish-load', () => {
     showConsoleLog && console.log('5.frame 加载完成')
   })
 
-  webViewRef.value.addEventListener('did-finish-load',() => {
+  webViewRef.value.addEventListener('did-finish-load', () => {
     showConsoleLog && console.log('6.主框架frame 加载完成')
   })
 
-  webViewRef.value.addEventListener('did-stop-loading',() => {
+  webViewRef.value.addEventListener('did-stop-loading', () => {
     showConsoleLog && console.log('7.页面停止加载')
   })
 
-  webViewRef.value.addEventListener('page-favicon-updated',(e: { favicons: string | any[]; }) => {
-    showConsoleLog && console.log('8、网页icon更新')
-    if(e.favicons && e.favicons.length > 0){
-      tag.editTagItemById({
-        id: props.id,
-        icon: e.favicons[0],
-      })
+  webViewRef.value.addEventListener(
+    'page-favicon-updated',
+    (e: { favicons: string | any[] }) => {
+      showConsoleLog && console.log('8、网页icon更新')
+      if (e.favicons && e.favicons.length > 0) {
+        tag.editTagItemById({
+          id: props.id,
+          icon: e.favicons[0]
+        })
+      }
     }
-  })
+  )
 
-  webViewRef.value.addEventListener('did-fail-load',() => {
+  webViewRef.value.addEventListener('did-fail-load', () => {
     console.log('页面加载失败')
   })
 
-  webViewRef.value.addEventListener('context-menu',() => {
+  webViewRef.value.addEventListener('context-menu', () => {
     console.log('点击右键')
     if (!isContextShow.value) {
       isContextShow.value = true
@@ -171,12 +173,9 @@ const initWebViewHook = (showConsoleLog = false) => {
   })
 }
 
-
 onMounted(() => {
   initWebViewHook()
 })
-
-
 </script>
 
 <style src="./index.scss" lang="scss" scoped></style>

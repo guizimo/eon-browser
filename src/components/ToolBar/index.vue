@@ -1,24 +1,29 @@
 <template>
   <div class="tool-container">
     <span class="tool-icon-content">
-       <el-icon class="tool-icon" @click="goBack"><Back/></el-icon>
+      <el-icon class="tool-icon" @click="goBack"><Back /></el-icon>
     </span>
     <span class="tool-icon-content">
-       <el-icon class="tool-icon" @click="forward"><Right/></el-icon>
+      <el-icon class="tool-icon" @click="forward"><Right /></el-icon>
     </span>
     <span class="tool-icon-content">
-       <el-icon class="tool-icon" @click="reload"><RefreshRight/></el-icon>
+      <el-icon class="tool-icon" @click="reload"><RefreshRight /></el-icon>
     </span>
     <div class="tool-search">
-      <input class="tool-search-input" v-model="webUrl" spellcheck="false" autofocus
-             placeholder="百度搜索，或者直接打开网址" @keyup="handleChangeUrl">
+      <input
+        class="tool-search-input"
+        v-model="webUrl"
+        spellcheck="false"
+        autofocus
+        placeholder="百度搜索，或者直接打开网址"
+        @keyup="handleChangeUrl"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-
-import {ref, watch} from "vue";
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   link: String
@@ -29,14 +34,14 @@ const emit = defineEmits(['change', 'reload', 'goBack', 'forward'])
 const webUrl = ref(props.link)
 
 watch(
-    () => props.link,
-    (newProps) => {
-      webUrl.value = newProps
-    }
-);
+  () => props.link,
+  newProps => {
+    webUrl.value = newProps
+  }
+)
 
-const handleChangeUrl = (ev: { key: string; }) => {
-  emit('change', {ev, webUrl: webUrl.value})
+const handleChangeUrl = (ev: { key: string }) => {
+  emit('change', { ev, webUrl: webUrl.value })
 }
 
 // 刷新按钮
