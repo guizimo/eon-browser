@@ -1,8 +1,8 @@
 {
   "name": "eon-browser",
   "private": true,
-  "version": "2.0.1",
-  "main": "dist/index.js",
+  "version": "2.0.2",
+  "main": "dist-electron/main.js",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -77,6 +77,7 @@
     "extraResources": [],
     "files": [
       "dist/**/*",
+      "dist-electron/**/*",
       "static/**/*",
       ".env"
     ],
