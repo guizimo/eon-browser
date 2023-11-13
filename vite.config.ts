@@ -1,20 +1,19 @@
-import {ConfigEnv, UserConfigExport} from 'vite'
+import { ConfigEnv, UserConfigExport } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import {resolve} from "path"
-import electron from "vite-electron-plugin"
-import { rmSync } from "fs"
+import { resolve } from 'path'
+import electron from 'vite-electron-plugin'
+import { rmSync } from 'fs'
 
 /** 清空 dist */
-rmSync("dist", { recursive: true, force: true })
+rmSync('dist', { recursive: true, force: true })
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
-
   return {
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
-        "@": resolve(__dirname, "./src")
+        '@': resolve(__dirname, './src')
       }
     },
     build: {
@@ -30,8 +29,8 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
            * 2. 如果你不想自定义 chunk 分割策略，可以直接移除这段配置
            */
           manualChunks: {
-            vue: ["vue", "vue-router", "pinia"],
-            element: ["element-plus", "@element-plus/icons-vue"],
+            vue: ['vue', 'vue-router', 'pinia'],
+            element: ['element-plus', '@element-plus/icons-vue']
           }
         }
       }
@@ -39,30 +38,30 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     /** 混淆器 */
     esbuild: {
       /** 打包时移除 console.log */
-      pure: ["console.log"],
+      pure: ['console.log'],
       /** 打包时移除 debugger */
-      drop: ["debugger"],
+      drop: ['debugger'],
       /** 打包时移除所有注释 */
-      legalComments: "none"
+      legalComments: 'none'
     },
     /** Vite 插件 */
     plugins: [
       electron({
-        outDir: "dist",
-        include: ["script"],
-        transformOptions: {sourcemap: false},
+        outDir: 'dist-electron',
+        include: ['electron'],
+        transformOptions: { sourcemap: false },
         plugins: [
           {
-            name: "remove-comments",
-            transform: ({code}) => {
+            name: 'remove-comments',
+            transform: ({ code }) => {
               let content = code
               // 匹配 块级注释、行级注释、Region注释
               // \s 是匹配所有空白符, 包括换行; \S 非空白符, 不包括换行
               const pattern1 = /\/\*[\s\S]*?\*\/|(\s)+\/\/[\s\S]*?[\n]+/g
-              content = content.replaceAll(pattern1, "\n")
+              content = content.replaceAll(pattern1, '\n')
               // 匹配 所有空行
               const pattern2 = /^\s*[\r\n]/gm
-              content = content.replaceAll(pattern2, "")
+              content = content.replaceAll(pattern2, '')
               return content
             }
           }
