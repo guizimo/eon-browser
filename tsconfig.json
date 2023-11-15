@@ -17,7 +17,10 @@
     /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "skipLibCheck": true,
     "types": [
       "node",
@@ -29,11 +32,13 @@
     "baseUrl": ".",
     /** 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算 */
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
   },
   "include": [
-    "script/**/*.ts",
+    "electron/**/*.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
@@ -42,5 +47,10 @@
     "vite.config.ts"
   ],
   /** 编译器默认排除的编译文件 */
-  "exclude": ["node_modules", "dist", "release"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-electron",
+    "release"
+  ]
 }

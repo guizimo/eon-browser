@@ -4,6 +4,9 @@ dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.1.0
     version: registry.npmmirror.com/@element-plus/icons-vue@2.1.0(vue@3.3.8)
+  electron-log:
+    specifier: ^5.0.0
+    version: registry.npmmirror.com/electron-log@5.0.0
   element-plus:
     specifier: ^2.4.2
     version: registry.npmmirror.com/element-plus@2.4.2(vue@3.3.8)
@@ -2772,6 +2775,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  registry.npmmirror.com/electron-log@5.0.0:
+    resolution: {integrity: sha512-vB3akupmQvA8jAyNL9rULZtf6WoP8vsabjXsRtiqXS6/D37SwN/4LEyj4JD+9Bv6xoTcx/LrVnsIKEEWdq5ClQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-log/-/electron-log-5.0.0.tgz}
+    name: electron-log
+    version: 5.0.0
+    engines: {electron: '>= 13', node: '>= 14'}
+    dev: false
 
   registry.npmmirror.com/electron-publish@24.5.0:
     resolution: {integrity: sha512-zwo70suH15L15B4ZWNDoEg27HIYoPsGJUF7xevLJLSI7JUPC8l2yLBdLGwqueJ5XkDL7ucYyRZzxJVR8ElV9BA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-publish/-/electron-publish-24.5.0.tgz}
