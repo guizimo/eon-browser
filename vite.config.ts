@@ -6,6 +6,7 @@ import { rmSync } from 'fs'
 
 /** 清空 dist */
 rmSync('dist', { recursive: true, force: true })
+rmSync('dist-electron', { recursive: true, force: true })
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {

@@ -31,6 +31,7 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@electron/remote": "^2.1.0",
     "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
