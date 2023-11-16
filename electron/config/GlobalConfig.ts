@@ -64,7 +64,7 @@ class GlobalConfig {
   )
 
   // 运行地址
-  static readonly WIN_URL = NodePath.join(this.DIR_APP, 'dist', 'index.html')
+  static WIN_URL = NodePath.join(this.DIR_APP, "dist", "index.html")
 
   /**
    * 加载环境变量, 默认为 .env 文件
@@ -76,6 +76,18 @@ class GlobalConfig {
       config()
     } else {
       config({ path: NodePath.resolve(this.DIR_APP, '.env') })
+    }
+    this.loadWinUrl()
+  }
+
+  /**
+   * 加载WinUrl配置
+   */
+  static loadWinUrl() {
+    if (this.IS_DEV_MODE) {
+      this.WIN_URL = `http://${process.env.VITE_BASE_HOST}:${process.env.VITE_BASE_PORT}`
+    } else {
+      this.WIN_URL =  NodePath.join(this.DIR_APP, "dist", "index.html")
     }
   }
 

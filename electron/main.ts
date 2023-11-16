@@ -1,17 +1,16 @@
-// electron/main.ts
 import WinApp from './moudles/WinApp'
 import { protocol } from 'electron'
 
 // 协议保护
-protocol.registerSchemesAsPrivileged([
-  {
-    scheme: 'app',
-    privileges: {
-      secure: true,
-      standard: true
-    }
-  }
-])
+// protocol.registerSchemesAsPrivileged([
+//   {
+//     scheme: 'app',
+//     privileges: {
+//       secure: true,
+//       standard: true
+//     }
+//   }
+// ])
 
 // 关闭安全警告
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'false'

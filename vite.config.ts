@@ -1,4 +1,4 @@
-import { ConfigEnv, UserConfigExport } from 'vite'
+import { ConfigEnv, loadEnv, UserConfigExport } from "vite";
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import electron from 'vite-electron-plugin'
@@ -10,12 +10,20 @@ rmSync('dist-electron', { recursive: true, force: true })
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
+  const viteEnv = loadEnv(configEnv.mode, process.cwd()) as any
+  const { VITE_BASE_HOST, VITE_BASE_PORT } = viteEnv
   return {
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
         '@': resolve(__dirname, './src')
       }
+    },
+    server: {
+      // 设置 host: true 才可以使用 Network 的形式，以 IP 访问项目
+      host: VITE_BASE_HOST,
+      // 端口号
+      port: VITE_BASE_PORT
     },
     build: {
       /** 单个 chunk 文件的大小超过 2048KB 时发出警告 */
