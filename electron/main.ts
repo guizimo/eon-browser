@@ -22,7 +22,7 @@ let mainWindow: BrowserWindow
 // 创建浏览器窗口
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    title: 'GZM Browsers',
+    title: 'Eon Browser',
     titleBarStyle: 'hidden',
     width: 1200,
     height: 750,

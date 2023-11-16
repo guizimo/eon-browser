@@ -22,6 +22,8 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "dotenv": "^16.3.1",
+    "electron-log": "^5.0.0",
     "element-plus": "^2.4.2",
     "pinia": "^2.1.7",
     "uuid": "^9.0.1",

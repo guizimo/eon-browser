@@ -4,6 +4,12 @@ dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.1.0
     version: registry.npmmirror.com/@element-plus/icons-vue@2.1.0(vue@3.3.8)
+  dotenv:
+    specifier: ^16.3.1
+    version: registry.npmmirror.com/dotenv@16.3.1
+  electron-log:
+    specifier: ^5.0.0
+    version: registry.npmmirror.com/electron-log@5.0.0
   element-plus:
     specifier: ^2.4.2
     version: registry.npmmirror.com/element-plus@2.4.2(vue@3.3.8)
@@ -2694,6 +2700,13 @@ packages:
     version: 5.1.0
     dev: true
 
+  registry.npmmirror.com/dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dotenv/-/dotenv-16.3.1.tgz}
+    name: dotenv
+    version: 16.3.1
+    engines: {node: '>=12'}
+    dev: false
+
   registry.npmmirror.com/dotenv@9.0.2:
     resolution: {integrity: sha512-I9OvvrHp4pIARv4+x9iuewrWycX6CcZtoAu1XrzPxc5UygMJXJZYmBsynku8IkrJwgypE5DGNjDPmPRhDCptUg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dotenv/-/dotenv-9.0.2.tgz}
     name: dotenv
@@ -2772,6 +2785,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  registry.npmmirror.com/electron-log@5.0.0:
+    resolution: {integrity: sha512-vB3akupmQvA8jAyNL9rULZtf6WoP8vsabjXsRtiqXS6/D37SwN/4LEyj4JD+9Bv6xoTcx/LrVnsIKEEWdq5ClQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-log/-/electron-log-5.0.0.tgz}
+    name: electron-log
+    version: 5.0.0
+    engines: {electron: '>= 13', node: '>= 14'}
+    dev: false
 
   registry.npmmirror.com/electron-publish@24.5.0:
     resolution: {integrity: sha512-zwo70suH15L15B4ZWNDoEg27HIYoPsGJUF7xevLJLSI7JUPC8l2yLBdLGwqueJ5XkDL7ucYyRZzxJVR8ElV9BA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-publish/-/electron-publish-24.5.0.tgz}
