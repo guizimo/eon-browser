@@ -2,14 +2,14 @@ import { mainLog } from '../utils/logger'
 import {
   app,
   dialog,
-  Menu,
   ipcMain,
+  Menu,
   type MessageBoxSyncOptions
-} from 'electron'
-import * as remote from "@electron/remote/main"
+} from "electron";
+import * as remote from '@electron/remote/main'
 import GlobalConfig from '../config/GlobalConfig'
-import WinMain from "./WinMain";
-import WinTray from "./WinTray";
+import WinMain from './WinMain'
+import WinTray from './WinTray'
 
 export default class WinApp {
   // 初始化配置
@@ -75,30 +75,31 @@ export default class WinApp {
    */
   static ipcListening() {
     /** 重启 */
-    ipcMain.on("restart_app", () => this.restartApp())
+    ipcMain.on('restart_app', () => this.restartApp())
   }
+
 
   /**
    * APP监听事件
    */
   static appOnEvent() {
     // 运行第二个实例时
-    app.on("second-instance", () => WinMain.show("second-instance"))
+    app.on('second-instance', () => WinMain.show('second-instance'))
 
     // 所有的窗口都被关闭
-    app.on("window-all-closed", () => {
+    app.on('window-all-closed', () => {
       WinTray.destroy()
       this.exitApp()
     })
 
     // 程序退出之前
-    app.on("before-quit", () => {
-      mainLog.log("[before quit app] ")
+    app.on('before-quit', () => {
+      mainLog.log('[before quit app] ')
     })
 
     // 程序退出
-    app.on("quit", () => {
-      mainLog.log("[app is quit] ")
+    app.on('quit', () => {
+      mainLog.log('[app is quit] ')
       WinTray.destroy()
       app.releaseSingleInstanceLock()
     })
