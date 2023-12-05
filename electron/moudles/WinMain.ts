@@ -30,6 +30,8 @@ class WinMain {
     fullscreenable: true, // 是否允许全屏，为 false 则插件 screenfull 不起作用
     autoHideMenuBar: true, // 自动隐藏菜单栏, 除非按了 Alt 键, 默认值为 false
     backgroundColor: '#fff', // 背景颜色
+    titleBarStyle: 'hidden', // 隐藏原有的标题样式
+    trafficLightPosition: { x: 20, y: 20 }, // mac下窗口操作按钮
     webPreferences: {
       spellcheck: false, // 禁用拼写检查器
       disableBlinkFeatures: 'SourceMap', // 以 "," 分隔的禁用特性列表
