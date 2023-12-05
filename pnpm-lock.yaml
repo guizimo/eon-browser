@@ -27,6 +27,9 @@ dependencies:
     version: registry.npmmirror.com/vue-router@4.2.5(vue@3.3.8)
 
 devDependencies:
+  '@electron/remote':
+    specifier: ^2.1.0
+    version: registry.npmmirror.com/@electron/remote@2.1.0(electron@27.0.4)
   '@types/uuid':
     specifier: ^9.0.7
     version: registry.npmmirror.com/@types/uuid@9.0.7
@@ -222,6 +225,17 @@ packages:
       plist: registry.npmmirror.com/plist@3.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  registry.npmmirror.com/@electron/remote@2.1.0(electron@27.0.4):
+    resolution: {integrity: sha512-38jzz2beoYTo0DNS+aoaGyLS/fHeNTAc1Aom6HlYsxKnvVWjcg4xriC7J2IUkYSEDHGKX/D7jUst+mH4dHR6QA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@electron/remote/-/remote-2.1.0.tgz}
+    id: registry.npmmirror.com/@electron/remote/2.1.0
+    name: '@electron/remote'
+    version: 2.1.0
+    peerDependencies:
+      electron: '>= 13.0.0'
+    dependencies:
+      electron: registry.npmmirror.com/electron@27.0.4
     dev: true
 
   registry.npmmirror.com/@electron/universal@1.4.1:
