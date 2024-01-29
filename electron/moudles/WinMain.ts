@@ -20,8 +20,8 @@ class WinMain {
   private static WIN_CONFIG: BrowserWindowConstructorOptions = {
     icon: GlobalConfig.APP_LOGO, // 图标
     title: GlobalConfig.getAppTitle(), // 如果由 loadURL() 加载的 HTML 文件中含有标签 <title>，此属性将被忽略
-    width: 1200,
-    height: 800,
+    width: 1500,
+    height: 900,
     show: false, // 是否在创建时显示, 默认值为 true
     frame: false, // 是否有边框
     center: true, // 是否在屏幕居中
