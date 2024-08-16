@@ -12,26 +12,26 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   link: String
-})
+});
 
-const webUrl = ref(props.link)
+const webUrl = ref(props.link);
 
 watch(
   () => props.link,
-  newProps => {
-    webUrl.value = newProps
+  (newProps) => {
+    webUrl.value = newProps;
   }
-)
+);
 
-const emit = defineEmits(['change'])
+const emit = defineEmits(['change']);
 
 const handleChangeUrl = (ev: { key: string }) => {
-  emit('change', { ev, webUrl: webUrl.value })
-}
+  emit('change', { ev, webUrl: webUrl.value });
+};
 </script>
 
 <style src="./index.scss" lang="scss" scoped></style>

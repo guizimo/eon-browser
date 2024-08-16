@@ -1,6 +1,6 @@
 export interface TagItem {
-  icon: string
-  name: string
-  link: string
-  id: string
+  icon: string;
+  name: string;
+  link: string;
+  id: string;
 }

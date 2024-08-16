@@ -18,18 +18,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useBookMarkStore } from '../../store/modules/bookmarker'
-import { storeToRefs } from 'pinia'
-import { useTagStore } from '../../store/modules/tager'
+import { useBookMarkStore } from '../../store/modules/bookmarker';
+import { storeToRefs } from 'pinia';
+import { useTagStore } from '../../store/modules/tager';
 
-const bookMarkStore = useBookMarkStore()
-const tag = useTagStore()
+const bookMarkStore = useBookMarkStore();
+const tag = useTagStore();
 // 响应式
-const { bookMarkList } = storeToRefs(bookMarkStore)
+const { bookMarkList } = storeToRefs(bookMarkStore);
 
 const openNewTagHandler = (item: any) => {
-  tag.pushTagItem(item)
-}
+  tag.pushTagItem(item);
+};
 </script>
 
 <style lang="scss" src="./index.scss" scoped></style>

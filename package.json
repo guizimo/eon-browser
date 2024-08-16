@@ -1,7 +1,7 @@
 {
   "name": "eon-browser",
   "private": true,
-  "version": "2.0.3",
+  "version": "2.1.0",
   "main": "dist-electron/main.js",
   "engines": {
     "node": ">=16.0.0"
@@ -18,45 +18,54 @@
     "lint:prettier": "prettier --write \"{script,src,types}/**/*.{vue,js,jsx,ts,tsx,json,css,less,scss,html,md}\"",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "prepare": "husky install",
-    "electron:generate-icons": "electron-icon-builder --input=./public/logo.png --output=static --flatten"
+    "electron:generate-icons": "electron-icon-builder --input=./public/logo.png --output=static --flatten",
+    "release": "standard-version",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.1.0",
-    "dotenv": "^16.3.1",
-    "electron-log": "^5.0.0",
-    "element-plus": "^2.4.2",
-    "pinia": "^2.1.7",
+    "@element-plus/icons-vue": "^2.3.1",
+    "dotenv": "^16.4.5",
+    "electron-log": "^5.1.7",
+    "element-plus": "^2.8.0",
+    "pinia": "^2.2.2",
     "uuid": "^9.0.1",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue": "^3.4.38",
+    "vue-router": "^4.4.3"
   },
   "devDependencies": {
-    "@electron/remote": "^2.1.0",
-    "@types/uuid": "^9.0.7",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "@vitejs/plugin-vue": "^4.4.1",
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@electron/remote": "^2.1.2",
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-vue": "^4.6.2",
     "@vue/eslint-config-prettier": "^8.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",
-    "electron": "^27.0.4",
-    "electron-builder": "^24.6.4",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3",
     "electron-devtools-installer": "^3.2.0",
     "electron-icon-builder": "^2.0.1",
-    "eslint": "^8.53.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-vue": "^9.18.1",
-    "prettier": "^3.0.3",
-    "rimraf": "^5.0.5",
-    "sass": "^1.69.5",
-    "typescript": "^5.2.2",
-    "vite": "^4.5.0",
-    "vite-electron-plugin": "^0.8.2",
-    "vue-eslint-parser": "^9.3.2",
-    "vue-tsc": "^1.8.22"
+    "eslint": "^8.57.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.27.0",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
+    "prettier": "^3.3.3",
+    "rimraf": "^5.0.10",
+    "sass": "^1.77.8",
+    "standard-version": "^9.5.0",
+    "typescript": "^5.5.4",
+    "vite": "^4.5.3",
+    "vite-electron-plugin": "^0.8.3",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^1.8.27"
   },
   "lint-staged": {
     "*.{vue,js,jsx,ts,tsx}": [
-      "eslint --fix",
       "prettier --write"
     ],
     "*.{css,less,scss,html,md}": [
@@ -65,6 +74,11 @@
     "package.json": [
       "prettier --write"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "build": {
     "appId": "com.EonBrowser.desktop",

@@ -1,27 +1,27 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
 
-import '../src/styles/css/base.scss'
+import '../src/styles/css/base.scss';
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import { setupStore } from './store'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import { setupStore } from './store';
 
 const bootstrap = () => {
-  const app = createApp(App)
+  const app = createApp(App);
   // 配置存储
-  setupStore(app)
+  setupStore(app);
   // 加载图标
   for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-    app.component(key, component)
+    app.component(key, component);
   }
   // 屏蔽警告信息
-  app.config.warnHandler = () => null
-  app.use(ElementPlus).use(router).mount('#app')
-}
+  app.config.warnHandler = () => null;
+  app.use(ElementPlus).use(router).mount('#app');
+};
 
 // 初始化
-bootstrap()
+bootstrap();

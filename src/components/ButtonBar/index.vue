@@ -17,27 +17,27 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['reload', 'goBack', 'forward', 'putAway'])
+const emit = defineEmits(['reload', 'goBack', 'forward', 'putAway']);
 
 // 刷新按钮
 const reload = () => {
-  emit('reload')
-}
+  emit('reload');
+};
 
 // 后退按钮
 const goBack = () => {
-  emit('goBack')
-}
+  emit('goBack');
+};
 
 // 前进按钮
 const forward = () => {
-  emit('forward')
-}
+  emit('forward');
+};
 
 // 收起按钮
 const putAway = () => {
-  emit('putAway')
-}
+  emit('putAway');
+};
 </script>
 
 <style lang="scss" src="./index.scss" scoped></style>
