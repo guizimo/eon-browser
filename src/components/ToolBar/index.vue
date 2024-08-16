@@ -23,41 +23,41 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   link: String
-})
+});
 
-const emit = defineEmits(['change', 'reload', 'goBack', 'forward'])
+const emit = defineEmits(['change', 'reload', 'goBack', 'forward']);
 
-const webUrl = ref(props.link)
+const webUrl = ref(props.link);
 
 watch(
   () => props.link,
-  newProps => {
-    webUrl.value = newProps
+  (newProps) => {
+    webUrl.value = newProps;
   }
-)
+);
 
 const handleChangeUrl = (ev: { key: string }) => {
-  emit('change', { ev, webUrl: webUrl.value })
-}
+  emit('change', { ev, webUrl: webUrl.value });
+};
 
 // 刷新按钮
 const reload = () => {
-  emit('reload')
-}
+  emit('reload');
+};
 
 // 后退按钮
 const goBack = () => {
-  emit('goBack')
-}
+  emit('goBack');
+};
 
 // 前进按钮
 const forward = () => {
-  emit('forward')
-}
+  emit('forward');
+};
 </script>
 
 <style src="./index.scss" lang="scss" scoped></style>

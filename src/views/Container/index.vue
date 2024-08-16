@@ -16,19 +16,19 @@
 
 <script lang="ts" setup>
 // 组合式
-import { useTagStore } from '../../store/modules/tager'
-import WebViewHtml from '../WebView/index.vue'
-import SideBar from '../SideBar/index.vue'
-import { storeToRefs } from 'pinia'
+import { useTagStore } from '../../store/modules/tager';
+import WebViewHtml from '../WebView/index.vue';
+import SideBar from '../SideBar/index.vue';
+import { storeToRefs } from 'pinia';
 
-const tag = useTagStore()
+const tag = useTagStore();
 // 响应式
-const { tagList, curTagId } = storeToRefs(tag)
+const { tagList, curTagId } = storeToRefs(tag);
 
 const getCurTag = () => {
-  const curItem = tagList.value.find(item => item.id === curTagId.value)
-  return curItem?.link
-}
+  const curItem = tagList.value.find((item) => item.id === curTagId.value);
+  return curItem?.link;
+};
 </script>
 
 <style lang="scss" src="./index.scss" scoped></style>

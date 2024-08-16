@@ -1,13 +1,13 @@
-import { defineStore } from 'pinia'
-import { TagItem } from '../types/tagType'
-import { v4 as uuid } from 'uuid'
+import { defineStore } from 'pinia';
+import { TagItem } from '../types/tagType';
+import { v4 as uuid } from 'uuid';
 
 export const useTagStore = defineStore('tag', {
   state: () => {
     return {
       tagList: [] as TagItem[],
       curTagId: ''
-    }
+    };
   },
   actions: {
     /**
@@ -18,9 +18,9 @@ export const useTagStore = defineStore('tag', {
       const temp = {
         ...curItem,
         id: uuid()
-      }
-      this.curTagId = temp.id
-      this.tagList.push(temp)
+      };
+      this.curTagId = temp.id;
+      this.tagList.push(temp);
     },
     /**
      * 根据ID删除指定的窗口
@@ -29,15 +29,15 @@ export const useTagStore = defineStore('tag', {
     delTagItem(id: string) {
       if (this.tagList.length === 1) {
         // 删除只有一个tab时，不允许删除
-        return
+        return;
       }
       for (let i = 0; i < this.tagList.length; i++) {
-        if (this.tagList[i].id === id) this.tagList.splice(i, 1)
+        if (this.tagList[i].id === id) this.tagList.splice(i, 1);
       }
       if (this.curTagId === id) {
         // 删除当前tag
-        const curItem = this.tagList[this.tagList.length - 1]
-        this.curTagId = curItem ? curItem.id : ''
+        const curItem = this.tagList[this.tagList.length - 1];
+        this.curTagId = curItem ? curItem.id : '';
       }
     },
     /**
@@ -49,7 +49,7 @@ export const useTagStore = defineStore('tag', {
           this.tagList[i] = {
             ...this.tagList[i],
             ...params
-          }
+          };
         }
       }
     },
@@ -58,8 +58,8 @@ export const useTagStore = defineStore('tag', {
      * @param id
      */
     selectTagItem(id: string) {
-      const curItem = this.tagList.find(item => item.id === id)
-      this.curTagId = curItem ? curItem.id : ''
+      const curItem = this.tagList.find((item) => item.id === id);
+      this.curTagId = curItem ? curItem.id : '';
     }
   }
-})
+});
