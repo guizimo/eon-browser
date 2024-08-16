@@ -1,7 +1,7 @@
 {
   "name": "eon-browser",
   "private": true,
-  "version": "2.0.3",
+  "version": "2.1.0",
   "main": "dist-electron/main.js",
   "engines": {
     "node": ">=16.0.0"
@@ -18,7 +18,10 @@
     "lint:prettier": "prettier --write \"{script,src,types}/**/*.{vue,js,jsx,ts,tsx,json,css,less,scss,html,md}\"",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "prepare": "husky install",
-    "electron:generate-icons": "electron-icon-builder --input=./public/logo.png --output=static --flatten"
+    "electron:generate-icons": "electron-icon-builder --input=./public/logo.png --output=static --flatten",
+    "release": "standard-version",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
