@@ -1,10 +1,20 @@
-# GZM Browser
+<div align="center"><h1>Eon Browser</h1></div>
 
-![GZM Browser](https://guizimo.oss-cn-shanghai.aliyuncs.com/img/image-20230331154750421.png)
+<p align="center"><a href="https://github.com/guizimo/eon-browser" target="_blank" rel="said-cli"><img src="/public/logo_d.png" alt="eon-browser" /></a></p>
 
-## 1、介绍
+<div align="center">
 
-GZM Browser是一个没有同源限制的浏览器。界面采用大胆的Arc的风格。
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Vite](https://img.shields.io/badge/Packing-Vite-A269FF.svg)](https://github.com/guizimo/eon-browser)
+[![Typescript](https://img.shields.io/badge/Language-Typescript-3078C6.svg)](https://github.com/guizimo/eon-browser)
+[![License](https://img.shields.io/github/license/guizimo/eon-browser)](https://github.com/guizimo/eon-browser/blob/master/LICENSE)
+[![Stars](https://img.shields.io/github/stars/guizimo/eon-browser)](https://github.com/guizimo/eon-browser)
+
+</div>
+
+## ✨ 介绍
+
+`GZM Browser`是一个没有同源限制的浏览器。界面采用大胆的Arc的风格。它基于 `Vite` 、`Vue3`、 `TypeScript` 和`Electron`打造而成，可用于自定义浏览器应用。
 
 **首页**
 
@@ -18,37 +28,70 @@ GZM Browser是一个没有同源限制的浏览器。界面采用大胆的Arc的
 
 ![首页-全景](https://guizimo.oss-cn-shanghai.aliyuncs.com/img/image-20230331155547629.png)
 
-## 2、运行
+## 特性
 
-**安装依赖**
+- 🛠️ 使用 `Vite` ，极速构建，提升开发体验
+- 📦 集成 `TypeScript`，强类型支持，提升代码质量
+- ♻️ 使用最新的`Vue3`框架进行开发，帮助快速上手
+- 🔧 支持热更新和开发服务器，提升开发效率
 
-```zsh
-yarn
+## 快速开始
+
+[said-cli](https://github.com/guizimo/said-cli) 是一个快速拉取模板的脚手架工具，旨在简化和加速项目的初始化过程。
+
+使用 `said-cli` 创建一个基于 `electron-vue3-ts` 模板的新项目。
+
+### 安装 said-cli
+
+如果你还没有安装 `said-cli`，请先全局安装：
+
+```
+npm install -g said-cli
 ```
 
-**运行**
+### 开发
 
-```zsh
-yarn run dev
-```
-**生成图片**
+安装依赖
 
-图片地址：`public/icon.png`
-
-```zsh
-yarn run electron:generate-icons
+```shell
+pnpm i
 ```
 
-**构建打包**
+运行
 
-```zsh
-yarn run electron:build
+```shell
+pnpm run dev
 ```
 
-## 3、鸣谢
+打包生成构建产物
 
-1、[CSDN](https://blog.csdn.net/qq_53225741/article/details/124964773?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-124964773-blog-125671796.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-124964773-blog-125671796.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=1)
+```shell
+pnpm run build
+```
 
-2、[Element](https://element-plus.org/zh-CN)
+## 更新日志
 
-3、[pinia](https://pinia.vuejs.org/)
+[**Changelog**](./CHANGELOG.md) - 查看项目的更新日志
+
+## 贡献
+
+欢迎任何形式的贡献！你可以通过以下方式贡献代码：
+
+1. Fork 此仓库
+2. 创建你的功能分支 (git checkout -b feature/fooBar)
+3. 提交你的更改 (git commit -am 'Add some fooBar')
+4. 推送到分支 (git push origin feature/fooBar)
+5. 创建一个新的Pull Request
+
+## 许可证
+
+该项目基于 `GPL-3.0` 许可证开源。详情请参阅 [LICENSE](https://github.com/guizimo/eon-browser/blob/main/LICENSE) 文件。
+
+## 联系
+
+如果你有任何问题或建议，请通过以下方式联系我：
+
+- **Email**: 17680262548@163.com
+- **GitHub Issues**: [这里](https://github.com/guizimo/eon-browser/issues)
+
+感谢你使用 `GZM Browser`！希望它能帮助你更快地启动和开发项目。

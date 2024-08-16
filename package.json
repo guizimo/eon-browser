@@ -1,6 +1,6 @@
 {
   "name": "eon-browser",
-  "private": true,
+  "private": false,
   "version": "2.1.0",
   "main": "dist-electron/main.js",
   "engines": {
@@ -64,6 +64,13 @@
     "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^1.8.27"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guizimo/eon-browser.git"
+  },
+  "homepage": "github.com/guizimo/eon-browser#readme",
+  "author": "guizimo",
+  "license": "GPL-3.0",
   "lint-staged": {
     "*.{vue,js,jsx,ts,tsx}": [
       "prettier --write"
