@@ -25,7 +25,7 @@
  * https://www.electronjs.org/zh/docs/latest/api/webview-tag
  */
 import { onMounted, ref } from 'vue';
-import { useTagStore } from '../../store/modules/tager';
+import { useTagStore } from '@/store/modules/tager';
 
 const webViewRef = ref(null as any);
 
@@ -58,7 +58,6 @@ const tag = useTagStore();
 
 // 设置iframe样式
 const setIframeStyle = () => {
-  console.log(webViewRef.value, webViewRef.value.shadowRoot.querySelector('iframe'));
   webViewRef.value.shadowRoot.querySelector('iframe').style.borderRadius = '6px';
 };
 

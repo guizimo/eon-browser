@@ -1,5 +1,3 @@
-<div align="center"><h1>Eon Browser</h1></div>
-
 <p align="center"><a href="https://github.com/guizimo/eon-browser" target="_blank" rel="said-cli"><img src="/public/logo_d.png" alt="eon-browser" style="width: 200px;" /></a></p>
 
 <div align="center">
