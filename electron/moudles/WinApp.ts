@@ -97,7 +97,7 @@ export default class WinApp {
       app.releaseSingleInstanceLock();
     });
 
-    // 监听webview新建的窗口
+    // 监听Webview新建的窗口
     app.on('web-contents-created', (event, contents) => {
       if (contents.getType() === 'webview') {
         contents.setWindowOpenHandler(({ url }) => {
